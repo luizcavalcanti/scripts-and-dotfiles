@@ -1,6 +1,9 @@
+#command parameters
+EXTENSION=$1
+
 a=1
-for i in *.jpg; do
-    new=$(printf "%04d.jpg" ${a})
+for i in *.$EXTENSION; do
+    new=$(printf "%05d.$EXTENSION" ${a})
     echo ${i}
     mv ${i} ${new}
     let a=a+1
