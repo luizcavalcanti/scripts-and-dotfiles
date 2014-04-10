@@ -1,0 +1,28 @@
+ # COLORS #
+_WHITE='\e[01;00m'
+_RED='\e[01;31m'
+_GREEN='\e[01;32m'
+_DARKGREEN='\e[0;32m'
+_YELLOW='\e[01;33m'
+_BLUE='\e[01;34m'
+_CYAN='\e[01;36m'
+# COLORS (for the PS1 prompt) #
+WHITE="\[$_WHITE\]"
+RED="\[$_RED\]"
+GREEN="\[$_GREEN\]"
+DARKGREEN="\[$_DARKGREEN\]"
+YELLOW="\[$_YELLOW\]"
+BLUE="\[$_BLUE\]"
+CYAN="\[$_CYAN\]"
+
+# Print current git branch
+function git_branch() {
+        branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'`
+        if [ ! "$branch" = "" ]; then
+                echo " $branch";
+        fi
+}
+
+## GIT PS1 Prompt
+#GIT_PS1_SHOWDIRTYSTATE=true
+export PS1="\u@\h $DARKGREEN\W$YELLOW\$(git_branch)$WHITE \$$WHITE "
