@@ -15,4 +15,4 @@
  '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (package-initialize)
 (elpy-enable)
-(elpy-clean-modeline)
+;; (elpy-clean-modeline)
