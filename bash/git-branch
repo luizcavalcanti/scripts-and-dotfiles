@@ -17,7 +17,7 @@ CYAN="\[$_CYAN\]"
 
 # Print current git branch
 function git_branch() {
-        branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'`
+        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/')
         if [ ! "$branch" = "" ]; then
                 echo " $branch";
         fi
