@@ -1,9 +1,10 @@
 ; VARS
 (custom-set-variables
- '(inhibit-startup-screen t))
- '(custom-enabled-themes (quote (wombat))))
+ '(inhibit-startup-screen t)
+ '(custom-enabled-themes (quote (wombat)))
+)
 (custom-set-faces
- )
+)
 
  
 ;; GENERAL SETTINGS
