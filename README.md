@@ -1,4 +1,5 @@
 - android/coloredlogcat.py - Logcat with helpful formatting and colors
+- git/colored-man - Display man pages with configurable colors
 - bash/git-branch - Current git branch information on prompt (PS1)
 - bash/git-completion - Git completion configuration
 - rename-files-sequentialy.sh - Rename files to have a sequential name (limit to 9999)
