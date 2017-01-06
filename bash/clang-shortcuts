@@ -1,0 +1,5 @@
+
+# Simple function to create executable with the same name as c file
+clang_simple_exec() {
+    clang -Wall $1.c -o $1
+}
