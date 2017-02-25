@@ -1,30 +1,51 @@
-; VARS
-(custom-set-variables
- '(inhibit-startup-screen t)
- '(custom-enabled-themes (quote (wombat)))
-)
-(custom-set-faces
-)
+;;;;;;;;;;;;;;;;;;;;;;
+;; GENERAL SETTINGS ;;
+;;;;;;;;;;;;;;;;;;;;;;
 
- 
-;; GENERAL SETTINGS
+;; stop creating backup files
+(setq make-backup-files nil)
+
+;; remove menu bar
+(menu-bar-mode -1)
+
+;; use C-c C-d to duplicate line
+(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
+
+;; show line numbers
+(global-linum-mode 1)
+(setq linum-format "%4d  ")
+
+;; display column number
+(setq column-number-mode t)
+
+;; use spaces for indenting
 (setq-default indent-tabs-mode nil)
-;;--------------------
 
+;; hide/disable welcome screen
+(setq inhibit-startup-screen t)
 
-;; PYTHON SETTINGS
-(require 'package)
-(add-to-list 'package-archives
- '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-(package-initialize)
-(elpy-enable)
-;; (elpy-clean-modeline)
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; COLOR/THEME OPTIONS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; QT/QML SETTINGS
-(add-to-list 'load-path (expand-file-name "~/elisp/"))
-(require 'qml-mode)
-;;--------------------
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (tsdh-dark))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:foreground "white"))))
+ '(mode-line ((t (:background "#0087af" :foreground "white"))))
+ '(mode-line-inactive ((t (:background "#202020" :foreground "white")))))
 
+;;;;;;;;;;;
+;; MODES ;;
+;;;;;;;;;;;
 
 ;; C++ SETTINGS
 (c-add-style "my-style"
