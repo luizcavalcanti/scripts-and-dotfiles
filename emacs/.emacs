@@ -24,6 +24,7 @@
 ;; hide/disable welcome screen
 (setq inhibit-startup-screen t)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; COLOR/THEME OPTIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -40,8 +41,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:foreground "white"))))
- '(mode-line ((t (:background "#0087af" :foreground "white"))))
- '(mode-line-inactive ((t (:background "#202020" :foreground "white")))))
+ '(mode-line ((t (:background "#70d7ff" :foreground "#0a2d45"))))
+ '(mode-line-inactive ((t (:background "white" :foreground "#0a2d45")))))
+
 
 ;;;;;;;;;;;
 ;; MODES ;;
