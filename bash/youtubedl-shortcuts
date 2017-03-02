@@ -1,0 +1,4 @@
+# Download youtube video or playlist in best possible resolution (exclusind webm format)
+youtube-dl_best() {
+    youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" -f 'bestvideo[ext!=webm]+bestaudio[ext!=webm]/mp4' $1
+}
