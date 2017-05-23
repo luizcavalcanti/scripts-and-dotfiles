@@ -4,10 +4,12 @@ FORK_ALIAS=origin
 UPSTREAM_ALIAS=upstream
 
 git remote update
+git remote prune $FORK_ALIAS
+git remote prune $UPSTREAM_ALIAS
 
 for f in $(git for-each-ref refs/remotes/${FORK_ALIAS} --format '%(refname:short)' | sed "s,$FORK_ALIAS/,,");
 do
     if [ "$f" != "HEAD" ] && [ "$f" != "master" ]; then
-        $(git rev-parse -q --verify refs/remotes/${UPSTREAM_ALIAS}/${f} >/dev/null) || $(git push --delete ${FORK_ALIAS} ${f})
+        git rev-parse -q --verify refs/remotes/${UPSTREAM_ALIAS}/${f} >/dev/null || git push --delete ${FORK_ALIAS} ${f}
     fi
 done
