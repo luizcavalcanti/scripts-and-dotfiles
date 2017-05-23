@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FORK_ALIAS=origin
+UPSTREAM_ALIAS=upstream
+
+for f in $(git for-each-ref refs/remotes/${FORK_ALIAS} --format '%(refname:short)' | sed "s,$FORK_ALIAS/,,");
+do
+    if [ "$f" != "HEAD" ]; then
+        $(git rev-parse -q --verify refs/remotes/${UPSTREAM_ALIAS}/${f} >/dev/null) || $(git push --delete ${FORK_ALIAS} ${f})
+    fi
+done
