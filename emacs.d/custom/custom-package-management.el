@@ -31,9 +31,11 @@
     (package-refresh-contents))
 
 (ensure-package-installed 'gradle-mode
-                          'magit
                           'groovy-mode
-                          'go-mode)
+                          'go-autocomplete
+                          'go-mode
+                          'powerline
+                          'spaceline)
 
 ;; activate installed packages
 (package-initialize)

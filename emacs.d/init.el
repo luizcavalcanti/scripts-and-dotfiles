@@ -11,7 +11,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (go-autocomplete go-mode gradle-mode git-gutter magit))))
+    (powerline spaceline go-autocomplete go-mode gradle-mode))))
 (custom-set-faces
  )
 
