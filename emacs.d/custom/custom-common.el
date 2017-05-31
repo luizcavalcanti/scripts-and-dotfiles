@@ -37,3 +37,6 @@
 
 ;; set copy and paste from clipboard
 (setq x-select-enable-clipboard t)
+
+;; smooth scrolling
+(setq scroll-step 1 scroll-conservatively 10000)
