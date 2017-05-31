@@ -34,3 +34,6 @@
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <left>") 'windmove-left)
+
+;; set copy and paste from clipboard
+(setq x-select-enable-clipboard t)
