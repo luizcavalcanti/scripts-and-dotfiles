@@ -2,6 +2,8 @@
 ;; MODES ;;
 ;;;;;;;;;;;
 
+(enclose-global-mode t)
+
 ;; Enable auto-complete
 ;;(require 'go-autocomplete)
 ;;(require 'auto-complete-config)
