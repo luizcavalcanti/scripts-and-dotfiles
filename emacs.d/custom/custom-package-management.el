@@ -35,7 +35,8 @@
                           'go-autocomplete
                           'go-mode
                           'powerline
-                          'spaceline)
+                          'spaceline
+                          'ruby-electric)
 
 ;; activate installed packages
 (package-initialize)

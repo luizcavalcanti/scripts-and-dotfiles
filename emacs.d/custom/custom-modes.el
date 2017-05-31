@@ -23,14 +23,19 @@
   (c-set-style "my-style")        ; use my-style defined above
   (auto-fill-mode)
   (c-toggle-auto-hungry-state 1))
-
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 ;;---------------------
 
-
-;; EXTENSIONS/MODES SETTINGS
+;; Linking file extensions to their default modes
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . qml-mode))
 (add-to-list 'auto-mode-alist '("\\.gradle\\'" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-to-list 'auto-mode-alist
+             '("\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist
+             '("\\(?:Brewfile\\|Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . ruby-mode))
+
+;; Hooks for modes
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
