@@ -22,7 +22,7 @@
                     :foreground "#0a2d45"
                     :distant-foreground "#dddddd")
 (set-face-attribute 'mode-line-inactive nil
-                    :box nil
+                    :box t
                     :background "white"
                     :foreground "#0a2d45"
                     :distant-foreground "#dddddd")
