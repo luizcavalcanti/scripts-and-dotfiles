@@ -11,7 +11,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (powerline spaceline go-autocomplete go-mode gradle-mode))))
+    (markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode))))
 (custom-set-faces
  )
 

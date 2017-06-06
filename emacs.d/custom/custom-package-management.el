@@ -34,6 +34,7 @@
                           'groovy-mode
                           'go-autocomplete
                           'go-mode
+                          'markdown-mode
                           'powerline
                           'spaceline
                           'ruby-electric)
