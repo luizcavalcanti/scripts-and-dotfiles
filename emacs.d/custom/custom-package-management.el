@@ -31,13 +31,11 @@
     (package-refresh-contents))
 
 (ensure-package-installed 'gradle-mode
-                          'groovy-mode
                           'go-autocomplete
                           'go-mode
                           'markdown-mode
                           'powerline
-                          'spaceline
-                          'ruby-electric)
+                          'spaceline)
 
 ;; activate installed packages
 (package-initialize)
