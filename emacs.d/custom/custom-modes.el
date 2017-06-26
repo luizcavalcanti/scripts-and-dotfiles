@@ -2,7 +2,8 @@
 ;; MODES ;;
 ;;;;;;;;;;;
 
-(enclose-global-mode t)
+;; Enable automatic braces pairing
+(autopair-global-mode)
 
 ;; Enable auto-complete
 (require 'auto-complete-config)
