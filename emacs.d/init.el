@@ -35,9 +35,9 @@
   )
 
 (add-to-list 'load-path "~/.emacs.d/custom")
+(load "custom-package-management.el")
 (load "custom-common.el")
 (load "custom-theme.el")
-(load "custom-package-management.el")
 (load "custom-modes")
 
 ;;;;;;;;;;;
