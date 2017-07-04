@@ -30,7 +30,8 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'gradle-mode
+(ensure-package-installed 'autopair
+                          'gradle-mode
                           'go-autocomplete
                           'go-mode
                           'markdown-mode
