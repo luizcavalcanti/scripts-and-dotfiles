@@ -32,6 +32,10 @@
   (set-default-font "Monaco 12")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
+(when (my-system-type-is-gnu)
+  (set-default-font "Monospace 12")
+  (set-face-attribute 'mode-line nil :font "Monospace"))
+
 ;; load spaceline/poweline
 (require 'spaceline-config)
 (spaceline-emacs-theme)
