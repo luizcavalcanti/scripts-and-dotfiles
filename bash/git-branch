@@ -1,28 +1,26 @@
- # COLORS #
-_WHITE='\e[01;00m'
-_RED='\e[01;31m'
-_GREEN='\e[01;32m'
-_DARKGREEN='\e[0;32m'
-_YELLOW='\e[01;33m'
-_BLUE='\e[01;34m'
-_CYAN='\e[01;36m'
-# COLORS (for the PS1 prompt) #
-WHITE="\[$_WHITE\]"
-RED="\[$_RED\]"
-GREEN="\[$_GREEN\]"
-DARKGREEN="\[$_DARKGREEN\]"
-YELLOW="\[$_YELLOW\]"
-BLUE="\[$_BLUE\]"
-CYAN="\[$_CYAN\]"
+ # COLORS (for the PS1 prompt) #
+WHITE="\[\e[01;00m\]"
+RED="\[\e[01;31m\]"
+GREEN="\[\e[01;32m\]"
+DARKGREEN="\[\e[0;32m\]"
+YELLOW="\[\e[01;33m\]"
+BLUE="\[\e[01;34m\]"
+CYAN="\[\e[01;36m\]"
+WEIRD_BLUE="\[\e[38;5;27m\]"
 
 # Print current git branch
 function git_branch() {
-        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/')
-        if [ ! "$branch" = "" ]; then
-                echo " $branch";
-        fi
+    branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'`
+    if [ ! "$branch" = "" ]; then
+        echo " $branch";
+    fi
 }
 
+#for C in {0..255}; do
+#    tput setaf $C
+#    echo -n "$C "
+#done
+#echo
+
 ## GIT PS1 Prompt
-#GIT_PS1_SHOWDIRTYSTATE=true
-export PS1="\u@\h $DARKGREEN\W$YELLOW\$(git_branch)$WHITE \$$WHITE "
+export PS1="$WEIRD_BLUE\u $GREEN\W$YELLOW\$(git_branch)$WHITE \$$WHITE "
