@@ -36,7 +36,8 @@
                           'go-mode
                           'markdown-mode
                           'powerline
-                          'spaceline)
+                          'spaceline
+                          'slim-mode)
 
 ;; activate installed packages
 (package-initialize)
