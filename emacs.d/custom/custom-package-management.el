@@ -37,7 +37,8 @@
                           'markdown-mode
                           'powerline
                           'spaceline
-                          'slim-mode)
+                          'slim-mode
+                          'web-mode)
 
 ;; activate installed packages
 (package-initialize)
