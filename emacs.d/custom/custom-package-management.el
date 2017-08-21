@@ -38,7 +38,9 @@
                           'powerline
                           'spaceline
                           'slim-mode
-                          'web-mode)
+                          'web-mode
+                          'scss-mode
+                          'sass-mode)
 
 ;; activate installed packages
 (package-initialize)

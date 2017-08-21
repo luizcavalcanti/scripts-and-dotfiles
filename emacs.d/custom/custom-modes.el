@@ -23,6 +23,8 @@
 (add-to-list 'auto-mode-alist '("\\.slim\\'" . slim-mode))
 (add-to-list 'auto-mode-alist
              '("\\.\\(?:html\\|html\\|erb\\)\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-to-list 'auto-mode-alist '("\\.sass\\'" . sass-mode))
 (add-to-list 'auto-mode-alist
              '("\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist
