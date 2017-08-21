@@ -5,6 +5,11 @@
 ;; Enable automatic braces pairing
 (autopair-global-mode)
 
+;; Enable projectile for all contexts
+(projectile-global-mode)
+(setq projectile-indexing-method 'alien)
+(setq projectile-enable-caching t)
+
 ;; Enable auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
