@@ -1,6 +1,9 @@
 ;; stop creating backup files
 (setq make-backup-files nil)
 
+;; set auto-save of session
+(desktop-save-mode 1)
+
 ;; remove menu bar
 (menu-bar-mode -1)
 
