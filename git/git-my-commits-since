@@ -1,0 +1,6 @@
+#!/bin/bash
+
+START_DATE=$1
+AUTHOR_EMAIL=$(git config --get user.email)
+
+git log --since="${START_DATE}" --all --oneline --author ${AUTHOR_EMAIL}
