@@ -11,7 +11,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode))))
+    (docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode)))
 (custom-set-faces
  )
 

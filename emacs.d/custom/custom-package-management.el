@@ -40,7 +40,9 @@
                           'slim-mode
                           'web-mode
                           'scss-mode
-                          'sass-mode)
+                          'sass-mode
+                          'dockerfile-mode
+                          'docker-compose-mode)
 
 ;; activate installed packages
 (package-initialize)
