@@ -15,6 +15,9 @@
 (ac-config-default)
 (setq ac-ignore-case nil)
 
+;; settings for web-mode
+(setq web-mode-markup-indent-offset 2)
+
 ;; Auto-complete modes
 (add-to-list 'ac-modes 'ruby-electric-mode)
 
