@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; set color theme
-(load-theme 'tsdh-dark)
+(load-theme 'misterioso)
 
 (set-cursor-color "#FF6666")
 
