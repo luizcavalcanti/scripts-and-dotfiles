@@ -42,4 +42,5 @@
 (setq x-select-enable-clipboard t)
 
 ;; smooth scrolling
+(smooth-scrolling-mode 1)
 (setq scroll-step 1 scroll-conservatively 10000)
