@@ -15,11 +15,15 @@
 (ac-config-default)
 (setq ac-ignore-case nil)
 
-;; settings for web-mode
+;; settings for spacing
 (setq web-mode-markup-indent-offset 2)
+(setq js-indent-level 2)
 
 ;; Auto-complete modes
 (add-to-list 'ac-modes 'ruby-electric-mode)
+
+;; ruby-mode
+(setq ruby-insert-encoding-magic-comment nil)
 
 ;; Linking file extensions to their default modes
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -51,7 +55,6 @@
   (c-set-style "my-style")        ; use my-style defined above
   (auto-fill-mode)
   (c-toggle-auto-hungry-state 1))
-;;---------------------
 
 
 ;; Hooks for modes

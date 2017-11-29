@@ -7,10 +7,6 @@
 ;; Add repos to archives list
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("ELPA" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -42,7 +38,8 @@
                           'scss-mode
                           'sass-mode
                           'dockerfile-mode
-                          'docker-compose-mode)
+                          'docker-compose-mode
+                          'nyan-mode)
 
 ;; activate installed packages
 (package-initialize)

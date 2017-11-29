@@ -39,3 +39,8 @@
 ;; load spaceline/poweline
 (require 'spaceline-config)
 (spaceline-emacs-theme)
+
+;; load and configure nyan-mode
+(require 'nyan-mode)
+(setq nyan-animate-nyancat t)
+(nyan-mode)
