@@ -9,10 +9,18 @@
 (package-initialize)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (nyan-mode jsx-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode))))
+    (flx-ido nyan-mode jsx-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode))))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 
