@@ -39,7 +39,9 @@
                           'sass-mode
                           'dockerfile-mode
                           'docker-compose-mode
-                          'nyan-mode)
+                          'nyan-mode
+                          'neotree
+                          'flx-ido)
 
 ;; activate installed packages
 (package-initialize)
