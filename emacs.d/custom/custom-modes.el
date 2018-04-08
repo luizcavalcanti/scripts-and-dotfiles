@@ -2,25 +2,31 @@
 ;; MODES ;;
 ;;;;;;;;;;;
 
-;; Enable automatic braces pairing
-(autopair-global-mode)
-
 ;; Enable projectile for all contexts
 (projectile-global-mode)
 (setq projectile-indexing-method 'alien)
 (setq projectile-enable-caching t)
 
-;; Enable auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-ignore-case nil)
+;; Enable helm
+(require 'helm-config)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(setq helm-split-window-in-side-p t) ; open helm buffer inside current window, not occupy whole other window
+
+;; Projectile + Helm <3
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+(helm-mode 1)
+
+;; Enable automatic braces pairing
+(autopair-global-mode)
 
 ;; settings for spacing
-(setq web-mode-markup-indent-offset 2)
+(setq web-mode-markup-indent-offsext 2)
 (setq js-indent-level 2)
-
-;; Auto-complete modes
-(add-to-list 'ac-modes 'ruby-electric-mode)
 
 ;; ruby-mode
 (setq ruby-insert-encoding-magic-comment nil)
@@ -59,4 +65,4 @@
 
 ;; Hooks for modes
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
-;;(add-hook 'ruby-mode-hook 'ruby-electric-mode)
+(add-hook 'after-init-hook 'global-company-mode)

@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (neotree flx-ido nyan-mode jsx-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-autocomplete go-mode gradle-mode))))
+    (company helm-projectile helm cmake-mode neotree nyan-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-mode gradle-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

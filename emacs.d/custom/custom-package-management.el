@@ -28,7 +28,6 @@
 
 (ensure-package-installed 'autopair
                           'gradle-mode
-                          'go-autocomplete
                           'go-mode
                           'markdown-mode
                           'powerline
@@ -41,7 +40,9 @@
                           'docker-compose-mode
                           'nyan-mode
                           'neotree
-                          'flx-ido)
+                          'company
+                          'helm
+                          'helm-projectile)
 
 ;; activate installed packages
 (package-initialize)
