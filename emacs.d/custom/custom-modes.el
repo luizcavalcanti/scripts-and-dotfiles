@@ -9,17 +9,18 @@
 
 ;; Enable helm
 (require 'helm-config)
+(helm-mode 1)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
-(setq helm-split-window-in-side-p t) ; open helm buffer inside current window, not occupy whole other window
+(setq helm-split-window-in-side-p t)
+
 
 ;; Projectile + Helm <3
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-(helm-mode 1)
 
 ;; Enable automatic braces pairing
 (autopair-global-mode)
