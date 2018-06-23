@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company helm-projectile helm cmake-mode neotree nyan-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-mode gradle-mode))))
+    (cargo rust-mode company helm-projectile helm cmake-mode neotree nyan-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-mode gradle-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,17 +47,3 @@
 (load "custom-common.el")
 (load "custom-theme.el")
 (load "custom-modes")
-
-;;;;;;;;;;;
-;; GIT ;;
-;;;;;;;;;;;
-
-;; set magit help to git's man page
-;;(setq magit-view-git-manual-method 'man)
-
-;; Set Ctrl-x g for git status
-;;(global-set-key (kbd "C-x g") 'magit-status)
-
-;; enable git-gutter (displays changed lines)
-;;(global-git-gutter-mode t)
-;;(git-gutter:linum-setup)

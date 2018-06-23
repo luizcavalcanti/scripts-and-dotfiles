@@ -29,6 +29,10 @@
 (setq web-mode-markup-indent-offsext 2)
 (setq js-indent-level 2)
 
+;; rust-mode
+(setq rust-format-on-save t)
+(setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
+
 ;; ruby-mode
 (setq ruby-insert-encoding-magic-comment nil)
 
@@ -48,6 +52,7 @@
              '("\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist
              '("\\(?:Brewfile\\|Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; C++ settings
 (c-add-style "my-style"
