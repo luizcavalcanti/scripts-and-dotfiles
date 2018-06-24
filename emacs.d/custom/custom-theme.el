@@ -42,5 +42,7 @@
 
 ;; load and configure nyan-mode
 (require 'nyan-mode)
-(setq nyan-animate-nyancat t)
+(setq nyan-wavy-trail t)
+(setq nyan-bar-length 20)
 (nyan-mode)
+(nyan-start-animation)
