@@ -1,6 +1,8 @@
 ;;;;;;;;;;;
 ;; MODES ;;
 ;;;;;;;;;;;
+;; Enable emoji display everywhere
+(add-hook 'after-init-hook #'global-emojify-mode)
 
 ;; Enable projectile for all contexts
 (projectile-global-mode)
