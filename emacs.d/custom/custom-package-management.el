@@ -42,7 +42,9 @@
                           'neotree
                           'company
                           'helm
-                          'helm-projectile)
+                          'helm-projectile
+                          'rust-mode
+                          'emojify)
 
 ;; activate installed packages
 (package-initialize)
