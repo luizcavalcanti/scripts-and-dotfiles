@@ -31,9 +31,10 @@
 (setq web-mode-markup-indent-offsext 2)
 (setq js-indent-level 2)
 
-;; rust-mode
+;; rust-mode and cargo-minor-mode
 (setq rust-format-on-save t)
 (setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
 
 ;; ruby-mode
 (setq ruby-insert-encoding-magic-comment nil)
