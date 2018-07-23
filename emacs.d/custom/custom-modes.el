@@ -18,11 +18,9 @@
 (global-unset-key (kbd "C-x c"))
 (setq helm-split-window-in-side-p t)
 
-
 ;; Projectile + Helm <3
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-
 
 ;; Enable automatic braces pairing
 (autopair-global-mode)
