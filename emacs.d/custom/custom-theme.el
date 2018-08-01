@@ -33,8 +33,8 @@
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)
-  (set-default-font "Monaco 12")
-  (set-face-attribute 'mode-line nil :font "Monospace"))
+  (set-default-font "Monaco 10")
+  (set-face-attribute 'mode-line nil :font "Monaco"))
 
 ;; load spaceline/poweline
 (require 'spaceline-config)
