@@ -47,7 +47,3 @@
 ;; settings for neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
-
-;; PATH workaround for macos
-(when (my-system-type-is-darwin)
-  (exec-path-from-shell-initialize))

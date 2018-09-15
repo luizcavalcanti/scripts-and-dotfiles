@@ -29,7 +29,7 @@
 
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
-  (set-default-font "Monaco 14")
+  (set-default-font "Monaco 15")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)

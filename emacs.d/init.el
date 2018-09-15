@@ -15,7 +15,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emojify cargo rust-mode company helm-projectile helm cmake-mode neotree nyan-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-mode gradle-mode))))
+    (elixir-mode sml-mode emojify cargo rust-mode company helm-projectile helm cmake-mode neotree nyan-mode docker-compose-mode dockerfile-mode projectile sass-mode scss-mode web-mode slim-mode autopair markdown-mode powerline spaceline go-mode gradle-mode)))
+ '(safe-local-variable-values (quote ((encoding . utf-8)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
