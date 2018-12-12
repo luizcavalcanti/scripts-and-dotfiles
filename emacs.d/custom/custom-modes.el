@@ -26,7 +26,8 @@
 (autopair-global-mode)
 
 ;; settings for spacing
-(setq web-mode-markup-indent-offsext 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 (setq js-indent-level 2)
 
 ;; rust-mode and cargo-minor-mode
