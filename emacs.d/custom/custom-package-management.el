@@ -44,7 +44,12 @@
                           'helm
                           'helm-projectile
                           'rust-mode
-                          'emojify)
+                          'emojify
+                          'scala-mode
+                          'erlang
+                          'powershell
+                          'elixir-mode
+                          'sml-mode)
 
 ;; activate installed packages
 (package-initialize)
