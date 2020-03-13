@@ -85,6 +85,10 @@ fi
 export HISTCONTROL=ignoredups:erasedups
 eval $(/usr/libexec/path_helper -s)
 
+# ZSH history
+setopt HIST_IGNORE_DUPS
+#setopt HIST_IGNORE_ALL_DUPS
+
 
 # Colored ls
 alias ls="ls -G"
@@ -105,7 +109,12 @@ man() {
 
 # Custom prompt
 setopt PROMPT_SUBST
-export PS1='%F{012}%n 🐙 %F{010}%1~ %F{011}$(git_status) %F{255}$ '
+if [ "$LIGHT_MODE" = "true" ]; then
+    export PS1='%n %1~ $(git_status) $ '
+else
+    export PS1='%F{012}%n 🐙 %F{010}%1~ %F{011}$(git_status) %F{255}$ '
+fi
+
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
