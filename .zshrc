@@ -45,6 +45,11 @@ if [ -x "$(command -v pipenv)" ]; then
     eval "$(pipenv --completion)"
 fi
 
+if which pyenv-virtualenv-init > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 if [ -s "/usr/local/bin/virtualenvwrapper.sh" ]; then
     export WORKON_HOME=~/.virtualenvs
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -69,7 +74,7 @@ function git_status() {
 
 # Fuzzy search with fzf
 if [ -s "$HOME/.fzf.bash" ]; then
-    source ~/.fzf.bash
+    source ~/.fzf.zsh
 fi
 
 
@@ -119,8 +124,12 @@ fi
 export PATH="$HOME/.cargo/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/laluiz.c/.sdkman"
-[[ -s "/Users/laluiz.c/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/laluiz.c/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+fi
+
+if [ -f "$HOME/.env" ]; then
+    source "$HOME"/.env
 fi
