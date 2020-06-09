@@ -2,6 +2,9 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
+autoload -Uz compinit
+compinit
+
 # Haskell
 if [ -x "$(command -v ghc)" ]; then
     export PATH=$HOME/Library/Haskell/bin:$PATH
@@ -73,7 +76,7 @@ function git_status() {
 
 
 # Fuzzy search with fzf
-if [ -s "$HOME/.fzf.bash" ]; then
+if [ -s "$HOME/.fzf.zsh" ]; then
     source ~/.fzf.zsh
 fi
 
