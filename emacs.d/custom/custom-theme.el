@@ -29,11 +29,11 @@
 
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
-  (set-default-font "Monaco 15")
+  (set-frame-font "Monaco 14")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)
-  (set-default-font "Monaco 10")
+  (set-frame-font "Monaco 10")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 ;; load spaceline/poweline

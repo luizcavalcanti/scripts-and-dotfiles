@@ -38,6 +38,9 @@
 (setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
+;; python-mode
+(add-hook 'python-mode-hook 'blacken-mode)
+
 ;; ruby-mode
 (setq ruby-insert-encoding-magic-comment nil)
 
