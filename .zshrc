@@ -63,14 +63,15 @@ fi
 # Git
 function git_status() {
     branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/')
+    user=$(git config --get user.email | cut -d'@' -f2)
     diff_list=$(git diff-index --name-only HEAD 2> /dev/null)
 
     if [ ! "$branch" = "" ] && [ ! "$diff_list" = "" ]
     then
-        echo "$branch 🚧";
+        echo "$branch ($user) 🚧";
     elif [ ! "$branch" = "" ]
     then
-        echo "$branch"
+        echo "$branch ($user)"
     fi
 }
 
