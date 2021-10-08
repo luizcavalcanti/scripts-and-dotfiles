@@ -2,56 +2,26 @@
 ;; PACKAGE MANAGEMENT ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'package)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Add repos to archives list
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-(defun ensure-package-installed (&rest packages)
-  "Assure every package is installed, ask for installation if it’s not.
-   Return a list of installed packages or nil for every skipped package."
-  (mapcar
-   (lambda (package)
-     ;; (package-installed-p 'evil)
-     (if (package-installed-p package)
-         nil
-       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-           (package-install package)
-         package)))
-   packages))
-
-;; make sure to have downloaded archive description.
-;; Or use package-archive-contents as suggested by Nicolas Dudebout
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-(ensure-package-installed 'autopair
-                          'gradle-mode
-                          'go-mode
-                          'markdown-mode
-                          'powerline
-                          'spaceline
-                          'slim-mode
-                          'web-mode
-                          'scss-mode
-                          'sass-mode
-                          'dockerfile-mode
-                          'docker-compose-mode
-                          'nyan-mode
-                          'neotree
-                          'company
-                          'helm
-                          'helm-projectile
-                          'rust-mode
-                          'emojify
-                          'scala-mode
-                          'erlang
-                          'powershell
-                          'elixir-mode
-                          'sml-mode)
-
-;; activate installed packages
-;; (package-initialize)
+(straight-use-package 'use-package)
+(straight-use-package 'neotree)
+(straight-use-package 'spaceline)
+(straight-use-package 'nyan-mode)
+(straight-use-package 'projectile)
+(straight-use-package 'helm)
+(straight-use-package 'helm-projectile)
+(straight-use-package 'autopair)
+(straight-use-package 'emojify)
