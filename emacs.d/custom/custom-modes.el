@@ -27,7 +27,7 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (global-set-key (kbd "s-F") #'helm-projectile-grep)
-(global-set-key (kbd "s-t") #'helm-projectile-find-file-dwim)
+(global-set-key (kbd "s-t") #'helm-projectile-find-file)
 
 
 ;; ;; settings for spacing
@@ -43,8 +43,8 @@
 ;; ;; python-mode
 ;; (add-hook 'python-mode-hook 'blacken-mode)
 
-;; ;; ruby-mode
-;; (setq ruby-insert-encoding-magic-comment nil)
+;; ruby-mode
+(setq ruby-insert-encoding-magic-comment nil)
 
 ;; ;; Linking file extensions to their default modes
 ;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))

@@ -56,3 +56,6 @@
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <left>") 'windmove-left)
+
+;; other shortcuts
+(global-set-key (kbd "s-b") 'switch-to-buffer)
