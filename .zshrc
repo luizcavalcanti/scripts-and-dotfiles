@@ -25,6 +25,23 @@ if [ -s "/usr/local/opt/go" ]; then
 fi
 
 
+#Java
+if [ -s "$HOME/.sdkman" ]; then
+    export SDKMAN_DIR="$HOME/.sdkman"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+if [ -f "$HOME/.env" ]; then
+    source "$HOME"/.env
+fi
+
+
+#Node
+if [ -s "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
+
 # Ruby
 if [ -s "$HOME/.rvm/" ]; then
     export PATH=$PATH:$HOME/.rvm/bin
@@ -42,10 +59,6 @@ fi
 if [ -x "$(command -v python3)" ]; then
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
-fi
-
-if [ -x "$(command -v pipenv)" ]; then
-    eval "$(pipenv --completion)"
 fi
 
 if which pyenv-virtualenv-init > /dev/null; then
@@ -68,10 +81,10 @@ function git_status() {
 
     if [ ! "$branch" = "" ] && [ ! "$diff_list" = "" ]
     then
-        echo "$branch ($user) 🚧";
+        echo "$branch ($user) 🚧 ";
     elif [ ! "$branch" = "" ]
     then
-        echo "$branch ($user)"
+        echo "$branch ($user) "
     fi
 }
 
@@ -89,14 +102,12 @@ if [ -x "$(command -v youtube-dl)" ]; then
     }
 fi
 
+export PATH="/usr/local/sbin:$PATH"
 
-# Bash history
-export HISTCONTROL=ignoredups:erasedups
-eval $(/usr/libexec/path_helper -s)
 
 # ZSH history
 setopt HIST_IGNORE_DUPS
-#setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 
 # Colored ls
@@ -118,22 +129,4 @@ man() {
 
 # Custom prompt
 setopt PROMPT_SUBST
-if [ "$LIGHT_MODE" = "true" ]; then
-    export PS1='%n %1~ $(git_status) $ '
-else
-    export PS1='%F{012}%n 🐙 %F{010}%1~ %F{011}$(git_status) %F{255}$ '
-fi
-
-
-export PATH="$HOME/.cargo/bin:$PATH"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-if [ -f "$HOME/.env" ]; then
-    source "$HOME"/.env
-fi
+export PS1='%n 🐙 %1~ %F{001}$(git_status)%F{000}$ '
