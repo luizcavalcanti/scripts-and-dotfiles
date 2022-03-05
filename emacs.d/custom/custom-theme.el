@@ -3,12 +3,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; set color theme
-(load-theme 'misterioso)
+;; (load-theme 'misterioso)
+(load-theme 'solarized-light t)
 
 (set-cursor-color "#FF6666")
 
 ;; Line number bar appearance
-(set-face-attribute 'linum nil :foreground "white")
+(set-face-attribute 'linum nil :foreground "black")
 
 ;; Fringe (spacing among buffers, line numbers, etc) appearance
 (set-face-attribute 'fringe nil

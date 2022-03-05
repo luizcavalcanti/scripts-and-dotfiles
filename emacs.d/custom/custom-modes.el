@@ -46,6 +46,10 @@
 ;; ruby-mode
 (setq ruby-insert-encoding-magic-comment nil)
 
+;; coffee-mode
+(custom-set-variables
+ '(coffee-tab-width 2)
+ )
 ;; ;; Linking file extensions to their default modes
 ;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
