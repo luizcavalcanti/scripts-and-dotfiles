@@ -16,7 +16,6 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; ;; Enable helm
-(require 'helm-config)
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
@@ -36,9 +35,9 @@
 ;; (setq js-indent-level 2)
 
 ;; ;; rust-mode and cargo-minor-mode
-;; (setq rust-format-on-save t)
-;; (setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
-;; (add-hook 'rust-mode-hook 'cargo-minor-mode)
+(setq rust-format-on-save t)
+(setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
 
 ;; ;; python-mode
 ;; (add-hook 'python-mode-hook 'blacken-mode)

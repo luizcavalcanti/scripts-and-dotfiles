@@ -31,3 +31,4 @@
 (straight-use-package 'rainbow-delimiters)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'solarized-emacs)
+(straight-use-package 'rust-mode)

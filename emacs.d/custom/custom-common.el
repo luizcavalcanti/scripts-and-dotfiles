@@ -13,13 +13,6 @@
 ;; remove scroll bar
 (scroll-bar-mode -1)
 
-;; show line numbers
-(global-linum-mode 1)
-(setq linum-format "%4d  ")
-
-;; display column number
-(setq column-number-mode t)
-
 ;; use spaces for indenting
 (setq-default indent-tabs-mode nil)
 
