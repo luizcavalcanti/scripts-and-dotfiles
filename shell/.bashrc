@@ -49,12 +49,12 @@ fi
 
 
 # Git
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
+# if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+#    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+#fi
 
 function git_status() {
-    branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/')
+    branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
     diff_list=$(git diff-index --name-only HEAD 2> /dev/null)
 
     if [ ! "$branch" = "" ] && [ ! "$diff_list" = "" ]
@@ -83,26 +83,11 @@ fi
 
 # Bash history
 export HISTCONTROL=ignoredups:erasedups
-eval $(/usr/libexec/path_helper -s)
+# eval $(/usr/libexec/path_helper -s)
 
 
-# Colored ls
-alias ls="ls -G"
-
-
-# Colored man
-man() {
-    env \
-        LESS_TERMCAP_mb=$'\e[1;31m' \
-        LESS_TERMCAP_md=$'\e[1;31m' \
-        LESS_TERMCAP_me=$'\e[0m' \
-        LESS_TERMCAP_se=$'\e[0m' \
-        LESS_TERMCAP_so=$'\e[1;44;33m' \
-        LESS_TERMCAP_ue=$'\e[0m' \
-        LESS_TERMCAP_us=$'\e[1;' \
-        man "$@"
-}
-
+# Aliases
+source ~/.aliases
 
 ## PS1 Prompt
 WHITE="\[\e[01;00m\]"
@@ -114,4 +99,7 @@ BLUE="\[\e[01;34m\]"
 CYAN="\[\e[01;36m\]"
 WEIRD_BLUE="\[\e[38;5;27m\]"
 
-export PS1="$BLUE\u 🐙 $GREEN\W$YELLOW\$(git_status) $WHITE\$ "
+export PS1='\[\e[01;34m\]\u \[\e[01;32m\][\w]\[\e[01;33m\]$(git_status)\n🦑\[\e[01;00m\] '
+
+# Created by `pipx` on 2024-03-07 20:51:35
+export PATH="$PATH:/home/luiz/.local/bin"

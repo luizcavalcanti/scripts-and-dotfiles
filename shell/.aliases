@@ -1,0 +1,26 @@
+OS_NAME=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+
+# Ubuntu-specific stuff
+if [[ $OS_NAME = *"Ubuntu"* ]]; then
+    alias upgrade="sudo apt update && sudo apt upgrade"
+fi
+
+# FS navigation
+alias ls="ls --color=auto"
+alias ll="ls --color=auto -lh"
+
+# Git
+alias gst="git status -s"
+
+# Colored man
+man() {
+    env \
+        LESS_TERMCAP_mb=$'\e[1;31m' \
+        LESS_TERMCAP_md=$'\e[1;31m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[1;44;33m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[1;' \
+        man "$@"
+}
