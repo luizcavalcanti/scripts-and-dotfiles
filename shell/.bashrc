@@ -52,6 +52,9 @@ fi
 # if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
 #    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 #fi
+if [ -f /etc/profile.d/bash_completion.sh ]; then
+    source /etc/profile.d/bash_completion.sh
+fi
 
 function git_status() {
     branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
@@ -86,9 +89,6 @@ export HISTCONTROL=ignoredups:erasedups
 # eval $(/usr/libexec/path_helper -s)
 
 
-# Aliases
-source ~/.aliases
-
 ## PS1 Prompt
 WHITE="\[\e[01;00m\]"
 RED="\[\e[01;31m\]"
@@ -103,3 +103,6 @@ export PS1='\[\e[01;34m\]\u \[\e[01;32m\][\w]\[\e[01;33m\]$(git_status)\n🦑\[\
 
 # Created by `pipx` on 2024-03-07 20:51:35
 export PATH="$PATH:/home/luiz/.local/bin"
+
+# Aliases
+source ~/.aliases
