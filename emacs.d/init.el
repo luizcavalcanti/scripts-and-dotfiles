@@ -39,15 +39,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE MANAGEMENT ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -55,29 +57,22 @@
 
 (straight-use-package 'use-package)
 (straight-use-package 'solarized-emacs)
-(straight-use-package 'material-theme)
 (straight-use-package 'neotree)
-(straight-use-package 'spaceline)
 (straight-use-package 'nyan-mode)
 (straight-use-package 'autopair)
-(straight-use-package 'emojify)
 (straight-use-package 'projectile)
 (straight-use-package 'helm)
 (straight-use-package 'helm-projectile)
-;; (straight-use-package 'anaconda-mode)
-;; (straight-use-package 'coffee-mode)
 (straight-use-package 'markdown-mode)
-;; (straight-use-package 'minimap)
 (straight-use-package 'rainbow-delimiters)
 (straight-use-package 'diminish)
-;; (straight-use-package 'magit)
 (straight-use-package 'yaml-mode)
-;; (straight-use-package 'rust-mode)
+(straight-use-package 'company)
+(straight-use-package 'all-the-icons)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
 ;;;;;;;;;;;;;;;;;;;;
-
 ;; stop creating backup files
 (setq make-backup-files nil)
 
@@ -117,6 +112,7 @@
 
 ;; neotree toggle
 (require 'neotree)
+;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (global-set-key [f8] 'neotree-toggle)
 
 ;; use C-c C-d to duplicate line
@@ -133,71 +129,15 @@
 (global-set-key (kbd "s-;") 'comment-line)
 (global-set-key (kbd "s-w") 'kill-this-buffer)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;; COLOR/THEME OPTIONS ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; set color theme
-;; (load-theme 'misterioso)
-;; (load-theme 'solarized-light t)
-(load-theme 'solarized-dark t)
-;;(load-theme 'material)
-
-(set-cursor-color "#FF6666")
-
-;; Fringe (spacing among buffers, line numbers, etc) appearance
-(set-face-attribute 'fringe nil
-                      :foreground (face-foreground 'default)
-                      :background (face-background 'default))
-
-;; set MacOS-specific font configuration
-(when (my-system-type-is-darwin)
-  (set-frame-font "Monaco 14")
-  (set-face-attribute 'mode-line nil :font "Monaco"))
-
-(when (my-system-type-is-gnu)
-  (set-frame-font "Monaco 12")
-  (set-face-attribute 'mode-line nil :font "Monaco"))
-
-;; load spaceline/poweline
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-
-;; load and configure nyan-mode
-(require 'nyan-mode)
-(setq nyan-wavy-trail t)
-(setq nyan-bar-length 20)
-(nyan-mode)
-(nyan-start-animation)
-
-;; Hide obvious minor modes
-(diminish 'projectile-mode)
-(diminish 'helm-mode)
-(diminish 'autopair-mode)
-(diminish 'eldoc-mode)
-(diminish 'flymake-mode)
-
-;; Configure mode-line appearance
-(set-face-attribute 'mode-line nil
-                    :box nil
-                    :background "#6666ff"
-                    :foreground "#daddd5"
-                    :distant-foreground "#dddddd")
-;;(set-face-attribute 'mode-line-inactive nil
-;;                    :box t
-;;                    :background "white"
-;;                    :foreground "#0a2d45"
-;;                    :distant-foreground "#dddddd")
-
-
-
 ;;;;;;;;;;;
 ;; MODES ;;
 ;;;;;;;;;;;
 
 ;; Enable emoji display everywhere
-(add-hook 'after-init-hook 'global-emojify-mode)
+;; (add-hook 'after-init-hook 'global-emojify-mode)
+
+;; Enable company mode everywhere
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Enable automatic braces pairing
 (autopair-global-mode)
@@ -225,4 +165,57 @@
 
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-;; (set-keyboard-coding-system 'utf-8)
+
+
+(defun efs/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                   (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; COLOR/THEME OPTIONS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; set color theme
+(load-theme 'solarized-dark t)
+
+;; Cursor settings
+(set-cursor-color "#FF6666")
+
+;; Configure mode-line appearance
+(set-face-attribute 'mode-line nil
+                    :box nil
+                    :foreground "#daddd5")
+
+;; Fringe (spacing among buffers, line numbers, etc) appearance
+(set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
+
+;; set MacOS-specific font configuration
+(when (my-system-type-is-darwin)
+  (set-frame-font "Monaco 14")
+  (set-face-attribute 'mode-line nil :font "Monaco"))
+
+(when (my-system-type-is-gnu)
+  (set-frame-font "Monaco 12")
+  (set-face-attribute 'mode-line nil :font "Monaco"))
+
+;; load and configure nyan-mode
+(require 'nyan-mode)
+(setq nyan-wavy-trail t)
+(setq nyan-bar-length 20)
+(nyan-mode)
+(nyan-start-animation)
+
+;; Hide obvious minor modes
+(diminish 'projectile-mode)
+(diminish 'helm-mode)
+(diminish 'autopair-mode)
+(diminish 'eldoc-mode)
+(diminish 'flymake-mode)
+(diminish 'company-mode)
