@@ -198,11 +198,11 @@
 
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
-  (set-frame-font "Monaco 14")
+  (set-frame-font "Monaco 14" nil t)
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)
-  (set-frame-font "Monaco 12")
+  (set-frame-font "Monaco 12" nil t)
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 ;; load and configure nyan-mode
