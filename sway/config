@@ -21,7 +21,8 @@ set $term alacritty
 #set $menu dmenu_path | wmenu | xargs swaymsg exec --
 #set $menu ulauncher  | xargs swaymsg exec --
 set $menu tofi-run | xargs swaymsg exec --
-#bindsym $mod+d exec $menu
+# other vars/apps
+set $file_manager nautilus
 
 ### Output configuration
 #
@@ -76,6 +77,9 @@ output eDP-1 {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # File manager
+    bindsym $mod+m exec $file_manager
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
