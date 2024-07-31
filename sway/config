@@ -226,3 +226,5 @@ focus_follows_mouse no
 #for_windows [title="^.*"] title_format ""
 
 include @sysconfdir@/sway/config.d/*
+
+exec mako
