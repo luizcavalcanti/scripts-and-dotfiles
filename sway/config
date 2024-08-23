@@ -38,10 +38,11 @@ set $menu ulauncher-toggle
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#output * bg ~/.config/sway/wallpapers/fox_01.jpg fill
+output * bg ~/.config/sway/wallpapers/llama.png fill
 output eDP-1 {
 	mode 2560x1600@59.972Hz
 	scale 1.5
-	bg ~/Pictures/Wallpapers/fox_01.jpg fill
 }
 
 ### Idle configuration
