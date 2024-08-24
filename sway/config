@@ -4,6 +4,18 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+#####################################
+# Current dependencies:
+# tofi (launcher)
+# dolphin (file manager)
+# waybar (sway bar)
+# alacritty (terminal emulator)
+# mako (notifications)
+# avizo (brightness/volume/progress)
+# swaylock (lock screen)
+#####################################
+
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -18,42 +30,45 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-#set $menu dmenu_path | wmenu | xargs swaymsg exec --
-#set $menu ulauncher  | xargs swaymsg exec --
 set $menu tofi-run | xargs swaymsg exec --
-# other vars/apps
-set $file_manager nautilus
 
+# ulauncher
 #exec /usr/bin/python3 /usr/bin/ulauncher --hide-window 1 > ~/logs/ulauncher.log 2>&1
 #exec GDK_BACKEND=wayland ulauncher --hide-window
 #for_window [app_id="ulauncher"] floating enable, border none
 #set $menu ulauncher-toggle
 #bindsym $mod+space exec ulauncher-toggle
 
+# other vars/apps
+set $file_manager dolphin
+set $browser firefox
+
+# Notifications
+exec mako
+
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-# output * bg ~/Pictures/Wallpapers/fox_01.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 # Example configuration:
-#
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#output * bg ~/.config/sway/wallpapers/fox_01.jpg fill
 output * bg ~/.config/sway/wallpapers/llama.png fill
+# macbook retina
 output eDP-1 {
-	mode 2560x1600@59.972Hz
-	scale 1.5
+    mode 2560x1600@59.972Hz
+    scale 1.25
 }
 
 ### Idle configuration
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 120 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -103,7 +118,9 @@ input "type:keyboard" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Quer mesmo sair do sway?' -s 'Não' -B 'Sim, quero sair' 'swaymsg exit'
+    # Shutdown computer
+    bindsym $mod+Shift+backspace exec swaynag -t error -m 'Quer mesmo desligar o computador?' -s 'Não' -B 'Sim, desligue esta porra' 'shutdown -h now'
 #
 # Moving around:
 #
@@ -226,8 +243,9 @@ bar {
     swaybar_command waybar
 }
 
+# Fonts
 font pango:Cantarell 14px
-# font pango:"RobotoMono Nerd Font" Regular 11 
+# font pango:"RobotoMono Nerd Font" Regular 11
 # font pango:SourceCodePro Medium 11
 
 # Title bar
@@ -236,6 +254,15 @@ default_border pixel 1
 focus_follows_mouse no
 #for_windows [title="^.*"] title_format ""
 
+# Avizo (volume/brightness)
+exec "avizo-service"
+bindsym XF86AudioRaiseVolume exec volumectl -u up
+bindsym XF86AudioLowerVolume exec volumectl -u down
+bindsym XF86AudioMute exec volumectl toggle-mute
+bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+bindsym XF86MonBrightnessUp exec lightctl up
+bindsym XF86MonBrightnessDown exec lightctl down
+
+
 include @sysconfdir@/sway/config.d/*
 
-exec mako
