@@ -13,6 +13,7 @@
 # mako (notifications)
 # avizo (brightness/volume/progress)
 # swaylock (lock screen)
+# swayidle (idle time counter)
 #####################################
 
 
@@ -145,6 +146,7 @@ input "type:keyboard" {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
@@ -172,6 +174,10 @@ input "type:keyboard" {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    bindsym $mod+tab workspace next_on_output
+    bindsym $mod+Shift+tab workspace prev_on_output
+
 #
 # Layout stuff:
 #
