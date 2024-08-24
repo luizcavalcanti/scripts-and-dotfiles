@@ -177,6 +177,7 @@ input "type:keyboard" {
 
     bindsym $mod+tab workspace next_on_output
     bindsym $mod+Shift+tab workspace prev_on_output
+    bindsym $mod+escape workspace back_and_forth
 
 #
 # Layout stuff:
