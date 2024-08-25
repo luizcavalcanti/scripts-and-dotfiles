@@ -55,10 +55,25 @@ exec mako
 # Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 output * bg ~/.config/sway/wallpapers/llama.png fill
-# macbook retina
+
+# macbook 13" retina
+#output eDP-1 {
+#    mode 2560x1600@59.972Hz
+#    scale 1.25
+#}
+
+# dell notebook
+#output eDP-1 disable
 output eDP-1 {
-    mode 2560x1600@59.972Hz
+    mode 1920x1080@60.020Hz
     scale 1.25
+     disable
+}
+
+# dell external monitor
+output DP-1 {
+    mode 2560x1440@59.951Hz
+    scale 1
 }
 
 ### Idle configuration
