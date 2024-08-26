@@ -14,6 +14,7 @@
 # avizo (brightness/volume/progress)
 # swaylock (lock screen)
 # swayidle (idle time counter)
+# pavucontrol (volume control)
 #####################################
 
 
@@ -255,6 +256,15 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+
+#
+# Multimedia
+#
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+bindsym XF86AudioMute exec amixer sset Master toggle
+
 
 #
 # Status Bar:
