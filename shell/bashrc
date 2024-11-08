@@ -47,6 +47,14 @@ if [ -s "/usr/local/bin/virtualenvwrapper.sh" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
+if [ -s "$HOME/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+
 
 # Git
 # if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
@@ -99,10 +107,11 @@ BLUE="\[\e[01;34m\]"
 CYAN="\[\e[01;36m\]"
 WEIRD_BLUE="\[\e[38;5;27m\]"
 
-export PS1='\[\e[01;34m\]\u \[\e[01;32m\][\w]\[\e[01;33m\]$(git_status)\n🦑\[\e[01;00m\] '
+export PS1='\[\e[01;36m\]\u \[\e[01;32m\][\w]\[\e[01;33m\]$(git_status)\n🦑\[\e[01;00m\] '
 
 # Created by `pipx` on 2024-03-07 20:51:35
 export PATH="$PATH:/home/luiz/.local/bin"
 
 # Aliases
+source ~/.env
 source ~/.aliases
