@@ -1,0 +1,242 @@
+#!/bin/bash
+
+
+USE_PIXELATE=false
+PIXELATE_SCALEFACTOR=4
+USE_DPMS=false
+DPMS_TIMEOUT=5
+declare -a PARAMS
+DPMS_OLD=
+DPMS_OLD_DISABLED=
+BACKGROUND=
+GRAYSCALE=
+USE_BLUR=false
+BLUR_FACTOR=4
+USE_IMAGE_FILL=false
+USE_IMAGE_MAXIMIZE=false
+IMAGE=
+USE_LOCK_ICON=false
+LOCK_ICON="/usr/share/i3lockmore/lock-icon.png"
+
+
+function print_help {
+cat <<- EOF
+Extension for the screenlocker "i3lock" adding some high-level features:
+
+    --pixelate [scalefactor]
+        Pixelate the background of the lockscreen.
+
+    --blur [scalefactor]
+        Blur the background of the lockscreen.
+
+    --image-fill path
+        Fill each screen with the image in <path>.
+
+    --image-maximize path
+        Maximize the image in <path> over all screens.
+
+    --lock-icon [path]
+        Add a centered overlay to each screen.
+
+    --grayscale
+        Convert the background into grayscale.
+
+    --dpms timeout
+        Uses DPMS to turn the screen off after "timeout" seconds of inactivity.
+
+All other arguments are passed to i3lock. Read the man page for more information.
+EOF
+}
+
+
+function get_background_file {
+    BACKGROUND=$(mktemp /tmp/i3lockmore-background.XXXXX)
+    PARAMS+=( -i "$BACKGROUND" )
+}
+
+
+function make_screenshot {
+    if [[ -z "$BACKGROUND" ]]; then
+        get_background_file
+        import -window root jpeg:"$BACKGROUND"
+    fi
+}
+
+
+function check_file_exists {
+    if [[ ! -f "$1" ]]; then
+        echo "File \"$1\" does not exist!"
+        return 1
+    fi
+    return 0
+}
+
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --pixelate)
+            USE_PIXELATE=true
+            if [[ $# -gt 1 && "$2" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+                PIXELATE_SCALEFACTOR="$2"
+                shift
+            fi
+            ;;
+
+        --blur)
+            USE_BLUR=true
+            if [[ $# -gt 1 && "$2" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+                BLUR_FACTOR="$2"
+                shift
+            fi
+            ;;
+
+        --image-fill)
+            if [[ $# -gt 1 && "$2" =~ ^[^-].*$ ]]; then
+                USE_IMAGE_FILL=true
+                IMAGE="$2"
+                shift
+            else
+                echo "Usage: --image-fill path"
+                exit 1
+            fi
+            ;;
+
+        --image-maximize)
+            if [[ $# -gt 1 && "$2" =~ ^[^-].*$ ]]; then
+                USE_IMAGE_MAXIMIZE=true
+                IMAGE="$2"
+                shift
+            else
+                echo "Usage: --image-maximize path"
+                exit 1
+            fi
+            ;;
+
+        --lock-icon)
+            USE_LOCK_ICON=true
+            if [[ $# -gt 1 && "$2" =~ ^[^-].*$ ]]; then
+                LOCK_ICON="$2"
+                shift
+            fi
+            ;;
+
+        --grayscale)
+            GRAYSCALE="-colorspace gray"
+            ;;
+
+        --dpms)
+            if [[ $# -gt 1 && "$2" =~ ^[0-9]+$ ]]; then
+                USE_DPMS=true
+                DPMS_TIMEOUT="$2"
+                shift
+                PARAMS+=( "-n" )
+            else
+                echo "Usage: --dpms timeout"
+                exit 1
+            fi
+            ;;
+
+        -h|--help)
+            print_help
+            exit
+            ;;
+
+        *)
+            # Pass argument to i3lock
+            PARAMS+=( "$1" )
+            ;;
+    esac
+
+    # Consume argument
+    shift
+done
+
+
+function finish {
+    if [[ "$BACKGROUND" =~ ^/tmp/i3lockmore-background\.[a-zA-Z0-9]+$ ]]; then
+        rm "$BACKGROUND"
+    fi
+
+    if [[ "$USE_DPMS" == true ]]; then
+        xset dpms $DPMS_OLD
+        [[ -n $DPMS_OLD_DISABLED ]] && xset -dpms
+    fi
+}
+trap finish EXIT
+
+
+if [[ "$USE_IMAGE_FILL" == true ]]; then
+    get_background_file
+
+    screenarea=$(xrandr --current | grep -oP '(?<=current )\d+ x \d+')
+    screenarea=${screenarea// /}
+    screens=( $(xrandr --current | grep -oP '\d+x\d+\+\d+\+\d+') )
+
+    convert -size $screenarea xc:black $GRAYSCALE -quality 11 png24:"$BACKGROUND"
+
+    if check_file_exists "$IMAGE"; then
+        for screen in "${screens[@]}"; do
+            convert "$BACKGROUND" \
+                \( "$IMAGE" -gravity Center -resize ${screen%%+*}^ -extent ${screen%%+*} \) \
+                -gravity NorthWest -geometry +${screen#*+} -composite \
+                $GRAYSCALE -quality 11 png24:"$BACKGROUND"
+        done
+    fi
+fi
+
+
+if [[ "$USE_IMAGE_MAXIMIZE" == true ]]; then
+    get_background_file
+
+    screenarea=$(xrandr --current | grep -oP '(?<=current )\d+ x \d+')
+    screenarea=${screenarea// /}
+
+    if check_file_exists "$IMAGE"; then
+        convert "$IMAGE" -gravity Center -resize $screenarea^ -extent $screenarea \
+            $GRAYSCALE -quality 11 png24:"$BACKGROUND"
+    else
+        convert -size $screenarea xc:black $GRAYSCALE -quality 11 png24:"$BACKGROUND"
+    fi
+fi
+
+
+if [[ "$USE_BLUR" == true ]]; then
+    make_screenshot
+
+    size=$(identify -format "%[fx:w]x%[fx:h]" "$BACKGROUND")
+    convert "$BACKGROUND" -scale $BLUR_FACTOR% $GRAYSCALE -resize $size\! -quality 11 png24:"$BACKGROUND"
+fi
+
+
+if [[ "$USE_PIXELATE" == true ]]; then
+    make_screenshot
+
+    size=$(identify -format "%[fx:w]x%[fx:h]" "$BACKGROUND")
+    convert "$BACKGROUND" -scale $PIXELATE_SCALEFACTOR% $GRAYSCALE -sample $size\! -quality 11 png24:"$BACKGROUND"
+fi
+
+
+if [[ "$USE_LOCK_ICON" == true ]]; then
+    make_screenshot
+
+    screens=( $(xrandr --current | grep -oP '\d+x\d+\+\d+\+\d+') )
+
+    if check_file_exists "$LOCK_ICON"; then
+        for screen in "${screens[@]}"; do
+            convert "$BACKGROUND" \
+                \( "$LOCK_ICON" -gravity Center -background none -extent ${screen%%+*} \) \
+                -gravity NorthWest -geometry +${screen#*+} -composite \
+                $GRAYSCALE -quality 11 png24:"$BACKGROUND"
+        done
+    fi
+fi
+
+
+if [[ "$USE_DPMS" == true ]]; then
+    DPMS_OLD=$(xset q | grep Standby | sed -n 's/\s*Standby: \([0-9]*\)\s*Suspend: \([0-9]*\)\s*Off: \([0-9]*\).*/\1 \2 \3/p')
+    DPMS_OLD_DISABLED=$(xset q | grep "DPMS is Disabled")
+    xset dpms 0 0 $DPMS_TIMEOUT
+fi
+
+
+i3lock "${PARAMS[@]}"

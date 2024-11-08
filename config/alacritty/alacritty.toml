@@ -1,0 +1,25 @@
+[shell]
+program = "/bin/bash"
+
+[window]
+opacity = 0.9
+padding = { x=5, y=2 }
+blur = true
+decorations = "Full"
+dynamic_title = true
+
+[font]
+size = 9.5
+normal = { family = "monaco" }
+bold = { family = "monaco" }
+italic = { family = "monaco" }
+
+[keyboard]
+bindings = [
+  { key= "N",  mods = "Shift|Control", action = "CreateNewWindow" }
+]
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+unfocused_hollow = true
+
