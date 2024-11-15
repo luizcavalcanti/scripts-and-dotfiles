@@ -205,12 +205,15 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 # Bar color scheme
-set $bar-bgcolor    #363636
-set $bar-in-bgcolor #00000000
-set $bar-u-bgcolor  #ff0000
+set $bar-bg          #00000033
+set $bar-bg-selected #363636ff
+set $bar-bg-urgent  #ff0000
+
+set $bar-text           #ffffff
+set $bar-text-inactive  #ffffff
+
+set $bar-in-bgcolor #00000033
 set $bar-indicator  #a8a3c1
-set $bar-text       #ffffff
-set $bar-in-text    #ffffff
 set $bar-separator  #ffffff
 
 bar {
@@ -222,12 +225,12 @@ bar {
         # status_command i3blocks -c /home/luiz/.config/i3blocks/i3blocks.conf
         # tray_output none
 	    colors {
-                background $bar-in-bgcolor
+                background $bar-bg
                 separator $bar-separator
-                #                       border              background       text
-                focused_workspace       $bar-bgcolor        $bar-bgcolor  $bar-text
-                inactive_workspace      $bar-in-bgcolor     $bar-in-bgcolor     $bar-in-text
-                urgent_workspace        $bar-u-bgcolor      $bar-u-bgcolor   $bar-text   
+                #                       border         background        text
+                focused_workspace       $bar-bg        $bar-bg-selected  $bar-text
+                inactive_workspace      $bar-bg        $bar-bg           $bar-text-inactive
+                urgent_workspace        $bar-bg        $bar-bg-urgent    $bar-text
 
         }
 }
@@ -246,8 +249,6 @@ client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
 
 
-
-
 exec_always xrandr --output eDP-1 --off
 exec_always feh --bg-fill $desk_wallpaper
 exec_always picom -f
@@ -261,3 +262,13 @@ exec_always --no-startup-id dunst
 default_border pixel 0
 gaps inner 0
 gaps outer 0
+
+## Screenshots
+bindsym $mod+p exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+#bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+$mod+p exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Ctrl+$mod+p exec --no-startup-id maim | xclip -selection clipboard -t image/png
+#bindsym Ctrl+$mod+p exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+$mod+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
