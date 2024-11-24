@@ -170,25 +170,9 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; LSP
-(use-package lsp-mode
-  :hook
-  ((python-mode . lsp)))
-
-(use-package lsp-ui
-  :commands lsp-ui-mode)
-
-(use-package lsp-mode
-  :config
-  (lsp-register-custom-settings
-   '(("pyls.plugins.pyls_mypy.enabled" t t)
-     ("pyls.plugins.pyls_mypy.live_mode" nil t)
-     ("pyls.plugins.pyls_black.enabled" t t)
-     ("pyls.plugins.pyls_isort.enabled" t t)))
-  :hook
-  ((python-mode . lsp)))
-;; (add-hook 'lsp-mode-hook #'python-mode)
-;; :hook
-;; ((python-mode . lsp)))
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
+(add-hook 'python-mode 'lsp)
 
 ;; c/c++ config
 (setq c-basic-offset 4)
@@ -208,20 +192,21 @@
 ;; COLOR/THEME OPTIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set color theme
-(load-theme 'solarized-dark t)
+(load-theme 'solarized-light t)
+;; (enable-theme 'solarized-light t f)
 
 ;; Cursor settings
 (set-cursor-color "#FF6666")
 
 ;; Configure mode-line appearance
-(set-face-attribute 'mode-line nil
-                    :box nil
-                    :foreground "#daddd5")
+;; (set-face-attribute 'mode-line nil
+                    ;; :box nil
+                    ;; :foreground "#daddd5")
 
 ;; Fringe (spacing among buffers, line numbers, etc) appearance
-(set-face-attribute 'fringe nil
-                      :foreground (face-foreground 'default)
-                      :background (face-background 'default))
+;; (set-face-attribute 'fringe nil
+                      ;; :foreground (face-foreground 'default)
+                      ;; :background (face-background 'default))
 
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
