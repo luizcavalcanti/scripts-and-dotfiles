@@ -68,6 +68,10 @@
 (straight-use-package 'yaml-mode)
 (straight-use-package 'company)
 (straight-use-package 'all-the-icons)
+(straight-use-package 'go-mode)
+(straight-use-package 'glsl-mode)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
@@ -164,6 +168,30 @@
 
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; LSP
+(use-package lsp-mode
+  :hook
+  ((python-mode . lsp)))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode)
+
+(use-package lsp-mode
+  :config
+  (lsp-register-custom-settings
+   '(("pyls.plugins.pyls_mypy.enabled" t t)
+     ("pyls.plugins.pyls_mypy.live_mode" nil t)
+     ("pyls.plugins.pyls_black.enabled" t t)
+     ("pyls.plugins.pyls_isort.enabled" t t)))
+  :hook
+  ((python-mode . lsp)))
+;; (add-hook 'lsp-mode-hook #'python-mode)
+;; :hook
+;; ((python-mode . lsp)))
+
+;; c/c++ config
+(setq c-basic-offset 4)
 
 
 (defun efs/display-startup-time ()
