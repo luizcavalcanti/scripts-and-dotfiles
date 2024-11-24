@@ -173,6 +173,7 @@
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 (add-hook 'python-mode 'lsp)
+(add-hook 'go-mode 'lsp)
 
 ;; c/c++ config
 (setq c-basic-offset 4)
