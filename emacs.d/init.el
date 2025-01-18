@@ -92,6 +92,9 @@
 ;; remove scroll bar
 (scroll-bar-mode -1)
 
+;; enable line numbers
+(global-display-line-numbers-mode t)
+
 ;; use spaces for indenting
 (setq-default indent-tabs-mode nil)
 
@@ -193,8 +196,8 @@
 ;; COLOR/THEME OPTIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set color theme
-(load-theme 'solarized-light t)
-;; (enable-theme 'solarized-light t f)
+;; (load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 
 ;; Cursor settings
 (set-cursor-color "#FF6666")
