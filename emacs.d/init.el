@@ -59,6 +59,7 @@
 (straight-use-package 'solarized-emacs)
 (straight-use-package 'neotree)
 (straight-use-package 'nyan-mode)
+(straight-use-package 'autopair)
 (straight-use-package 'projectile)
 (straight-use-package 'helm)
 (straight-use-package 'helm-projectile)
@@ -68,10 +69,14 @@
 (straight-use-package 'yaml-mode)
 (straight-use-package 'company)
 (straight-use-package 'all-the-icons)
+(straight-use-package 'ruff-format)
 (straight-use-package 'go-mode)
 (straight-use-package 'glsl-mode)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
+(straight-use-package 'terraform-mode)
+(setq ruff-format-command "/home/luiz/.local/bin/ruff")
+(setq gofmt-command "/usr/local/go/bin/gofmt")
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
@@ -82,9 +87,6 @@
 ;; set auto-save of session
 (desktop-save-mode 1)
 
-;; set auto-pair mode for braces, quotes, etc
-(electric-pair-mode 1)
-
 ;; remove GUI barsr
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -92,8 +94,8 @@
 ;; remove scroll bar
 (scroll-bar-mode -1)
 
-;; enable line numbers
-(global-display-line-numbers-mode t)
+;; display line numbers
+(global-display-line-numbers-mode 1)
 
 ;; use spaces for indenting
 (setq-default indent-tabs-mode nil)
@@ -114,6 +116,14 @@
 
 ;; Disable warning sound, make it visible
 (setq visible-bell 1)
+
+;; Auto-reload changed files
+(global-auto-revert-mode t)
+
+;; Display tabs
+;; (setq tab-bar-show t)
+;;(global-tab-bar-mode t)
+;; (global-tab-line-mode t)
 
 ;;;;;;;;;;;;;;;
 ;; SHORTCUTS ;;
@@ -136,7 +146,7 @@
 ;; other shortcuts
 (global-set-key (kbd "s-b") 'switch-to-buffer)
 (global-set-key (kbd "s-;") 'comment-line)
-(global-set-key (kbd "s-w") 'kill-this-buffer)
+(global-set-key (kbd "s-k") 'kill-this-buffer)
 
 ;;;;;;;;;;;
 ;; MODES ;;
@@ -147,6 +157,9 @@
 
 ;; Enable company mode everywhere
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; Enable automatic braces pairing
+(autopair-global-mode)
 
 ;; Enable projectile for all contexts
 (projectile-global-mode)
@@ -214,11 +227,11 @@
 
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
-  (set-frame-font "Monaco 14" nil t)
+  (set-frame-font "Monaco 14")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)
-  (set-frame-font "Monaco 12" nil t)
+  (set-frame-font "Monaco 12")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 ;; load and configure nyan-mode
