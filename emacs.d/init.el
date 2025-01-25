@@ -185,11 +185,22 @@
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+
+;; Eglot
+(add-hook 'go-mode-hook 'eglot-ensure)
+(add-hook 'python-mode-hook 'eglot-ensure)
+;; (with-eval-after-load 'eglot
+  ;; (add-to-list 'eglot-server-programs
+               ;; '(go-mode . ("/home/luiz/go/bin/gopls"))
+               ;; '(python-mode . ("/test"))
+               ;; )
+  ;; )
+
 ;; LSP
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-(add-hook 'python-mode 'lsp)
-(add-hook 'go-mode 'lsp)
+;; (add-hook 'c-mode-hook 'lsp)
+;; (add-hook 'c++-mode-hook 'lsp)
+;; (add-hook 'python-mode 'lsp)
+;; (add-hook 'go-mode 'lsp)
 
 ;; c/c++ config
 (setq c-basic-offset 4)
