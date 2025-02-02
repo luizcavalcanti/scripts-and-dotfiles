@@ -72,8 +72,6 @@
 (straight-use-package 'ruff-format)
 (straight-use-package 'go-mode)
 (straight-use-package 'glsl-mode)
-(straight-use-package 'lsp-mode)
-(straight-use-package 'lsp-ui)
 (straight-use-package 'terraform-mode)
 (setq ruff-format-command "/home/luiz/.local/bin/ruff")
 (setq gofmt-command "/usr/local/go/bin/gofmt")
@@ -187,6 +185,8 @@
 
 
 ;; Eglot
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
 ;; (with-eval-after-load 'eglot
