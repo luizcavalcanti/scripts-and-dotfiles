@@ -281,8 +281,8 @@ font pango:Cantarell 14px
 # font pango:SourceCodePro Medium 11
 
 # Title bar
-#default_border none
-default_border pixel 1
+default_border none
+#default_border pixel 1
 focus_follows_mouse no
 #for_windows [title="^.*"] title_format ""
 
