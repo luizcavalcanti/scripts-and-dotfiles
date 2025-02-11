@@ -59,7 +59,6 @@
 (straight-use-package 'solarized-emacs)
 (straight-use-package 'neotree)
 (straight-use-package 'nyan-mode)
-(straight-use-package 'autopair)
 (straight-use-package 'projectile)
 (straight-use-package 'helm)
 (straight-use-package 'helm-projectile)
@@ -85,6 +84,9 @@
 ;; set auto-save of session
 (desktop-save-mode 1)
 
+;; set auto-pair mode for braces, quotes, etc
+(electric-pair-mode 1)
+
 ;; remove GUI barsr
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -92,8 +94,8 @@
 ;; remove scroll bar
 (scroll-bar-mode -1)
 
-;; display line numbers
-(global-display-line-numbers-mode 1)
+;; enable line numbers
+(global-display-line-numbers-mode t)
 
 ;; use spaces for indenting
 (setq-default indent-tabs-mode nil)
@@ -155,9 +157,6 @@
 
 ;; Enable company mode everywhere
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Enable automatic braces pairing
-(autopair-global-mode)
 
 ;; Enable projectile for all contexts
 (projectile-global-mode)
