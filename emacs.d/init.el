@@ -73,6 +73,8 @@
 (straight-use-package 'glsl-mode)
 (straight-use-package 'terraform-mode)
 (straight-use-package 'sideline-flymake)
+(straight-use-package 'eldoc-box)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -186,10 +188,14 @@
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
+(global-set-key (kbd "C-c r") #'eglot-rename)
+(add-hook 'eldoc-mode-hook
+          'eldoc-box-hover-mode)
 
 ;; Flymake
-(setq sideline-flymake-display-mode 'point)
+(setq sideline-flymake-display-mode 'line)
 (setq sideline-backends-right '(sideline-flymake))
+(add-hook 'flymake-mode 'sideline-mode)
 
 ;; Python config
 (setq ruff-format-command (concat (getenv "HOME") "/.local/bin/ruff"))
