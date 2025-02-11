@@ -195,7 +195,7 @@
 ;; Flymake
 (setq sideline-flymake-display-mode 'line)
 (setq sideline-backends-right '(sideline-flymake))
-(add-hook 'flymake-mode 'sideline-mode)
+(add-hook 'flymake-mode-hook 'sideline-mode)
 
 ;; Python config
 (setq ruff-format-command (concat (getenv "HOME") "/.local/bin/ruff"))
