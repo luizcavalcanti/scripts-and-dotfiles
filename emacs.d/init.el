@@ -72,8 +72,8 @@
 (straight-use-package 'go-mode)
 (straight-use-package 'glsl-mode)
 (straight-use-package 'terraform-mode)
-(setq ruff-format-command "/home/luiz/.local/bin/ruff")
-(setq gofmt-command "/usr/local/go/bin/gofmt")
+(straight-use-package 'sideline-flymake)
+
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
@@ -129,8 +129,7 @@
 ;; SHORTCUTS ;;
 ;;;;;;;;;;;;;;;
 
-;; neotree toggle
-(require 'neotree)
+;; neotree
 ;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (global-set-key [f8] 'neotree-toggle)
 
@@ -182,27 +181,25 @@
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-
 ;; Eglot
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
-;; (with-eval-after-load 'eglot
-  ;; (add-to-list 'eglot-server-programs
-               ;; '(go-mode . ("/home/luiz/go/bin/gopls"))
-               ;; '(python-mode . ("/test"))
-               ;; )
-  ;; )
 
-;; LSP
-;; (add-hook 'c-mode-hook 'lsp)
-;; (add-hook 'c++-mode-hook 'lsp)
-;; (add-hook 'python-mode 'lsp)
-;; (add-hook 'go-mode 'lsp)
+;; Flymake
+(setq sideline-flymake-display-mode 'point)
+(setq sideline-backends-right '(sideline-flymake))
+
+;; Python config
+(setq ruff-format-command (concat (getenv "HOME") "/.local/bin/ruff"))
 
 ;; c/c++ config
 (setq c-basic-offset 4)
+
+
+;; golang config
+(setq gofmt-command "/usr/local/go/bin/gofmt")
 
 
 (defun efs/display-startup-time ()
