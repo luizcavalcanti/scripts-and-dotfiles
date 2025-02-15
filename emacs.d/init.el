@@ -228,19 +228,9 @@
 ;; Cursor settings
 (set-cursor-color "#FF6666")
 
-;; Configure mode-line appearance
-;; (set-face-attribute 'mode-line nil
-                    ;; :box nil
-                    ;; :foreground "#daddd5")
-
-;; Fringe (spacing among buffers, line numbers, etc) appearance
-;; (set-face-attribute 'fringe nil
-                      ;; :foreground (face-foreground 'default)
-                      ;; :background (face-background 'default))
-
 ;; set MacOS-specific font configuration
 (when (my-system-type-is-darwin)
-  (set-frame-font "Monaco 14")
+  (set-frame-font "Monaco 15")
   (set-face-attribute 'mode-line nil :font "Monaco"))
 
 (when (my-system-type-is-gnu)
@@ -259,5 +249,6 @@
 (diminish 'helm-mode)
 (diminish 'autopair-mode)
 (diminish 'eldoc-mode)
+(diminish 'eldoc-box-hover-mode)
 (diminish 'flymake-mode)
 (diminish 'company-mode)
