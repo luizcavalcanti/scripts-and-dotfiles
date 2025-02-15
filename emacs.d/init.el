@@ -252,3 +252,4 @@
 (diminish 'eldoc-box-hover-mode)
 (diminish 'flymake-mode)
 (diminish 'company-mode)
+(diminish 'sideline-mode)
