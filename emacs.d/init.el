@@ -207,7 +207,7 @@
 
 ;; golang config
 (setq gofmt-command "/usr/local/go/bin/gofmt")
-
+(add-to-list 'exec-path "~/workspace/go/bin")
 
 (defun efs/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
