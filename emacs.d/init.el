@@ -147,7 +147,7 @@
 ;; other shortcuts
 (global-set-key (kbd "s-b") 'switch-to-buffer)
 (global-set-key (kbd "s-;") 'comment-line)
-(global-set-key (kbd "s-k") 'kill-this-buffer)
+(global-set-key (kbd "s-k") 'kill-current-buffer)
 
 ;;;;;;;;;;;
 ;; MODES ;;
@@ -189,6 +189,7 @@
 (add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
 (global-set-key (kbd "C-c r") #'eglot-rename)
+(global-set-key (kbd "C-c a") #'eglot-code-actions)
 (add-hook 'eldoc-mode-hook
           'eldoc-box-hover-mode)
 
