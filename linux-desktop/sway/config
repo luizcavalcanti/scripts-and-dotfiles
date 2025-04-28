@@ -34,7 +34,7 @@ set $term xfce4-terminal
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu tofi-run | xargs swaymsg exec --
-set $wallpaper ~/.config/wallpapers/sp_02.jpg
+set $wallpaper ~/.config/wallpapers/piano_01.jpg
 
 # ulauncher
 #exec /usr/bin/python3 /usr/bin/ulauncher --hide-window 1 > ~/logs/ulauncher.log 2>&1
