@@ -9,7 +9,7 @@
 # tofi (launcher)
 # dolphin (file manager)
 # waybar (sway bar)
-# alacritty (terminal emulator)
+# xfce4-terminal (terminal emulator)
 # mako (notifications)
 # avizo (brightness/volume/progress)
 # swaylock (lock screen)
@@ -28,11 +28,13 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term xfce4-terminal
+# alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu tofi-run | xargs swaymsg exec --
+set $wallpaper ~/.config/wallpapers/sp_02.jpg
 
 # ulauncher
 #exec /usr/bin/python3 /usr/bin/ulauncher --hide-window 1 > ~/logs/ulauncher.log 2>&1
@@ -55,21 +57,19 @@ exec mako
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 # Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-output * bg ~/.config/sway/wallpapers/llama.png fill
+output * bg $wallpaper fill
 
 # macbook 13" retina
-#output eDP-1 {
-#    mode 2560x1600@59.972Hz
-#    scale 1.25
-#}
+output eDP-1 {
+    mode 2560x1600@59.972Hz
+    scale 1.25
+}
 
 # dell notebook
 #output eDP-1 disable
-output eDP-1 {
-    mode 1920x1080@60.020Hz
-    scale 1.25
-     disable
-}
+#output eDP-1 {
+#    mode 1920x1080@60.020Hz
+#}
 
 # dell external monitor
 output DP-1 {
@@ -77,12 +77,13 @@ output DP-1 {
     scale 1
 }
 
+
 ### Idle configuration
 #
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 120 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
@@ -257,15 +258,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-
-#
-# Multimedia
-#
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
-bindsym XF86AudioMute exec amixer sset Master toggle
-
-
 #
 # Status Bar:
 #
@@ -283,7 +275,8 @@ font pango:Cantarell 14px
 # Title bar
 default_border none
 # default_border pixel 1
-focus_follows_mouse no
+focus_follows_mouse yes
+gaps inner 5
 #for_windows [title="^.*"] title_format ""
 
 # Avizo (volume/brightness)
@@ -303,3 +296,4 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE=wayland
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY MOZ_ENABLE_WAYLAND=1
 exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr
+exec_always nm-applet --indicator

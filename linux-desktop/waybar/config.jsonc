@@ -26,16 +26,22 @@
         "sway/window"
     ],
     "modules-right": [
-        "tray", 
         "memory",
+        "custom/separator",
         "cpu",
+        "custom/separator",
         "temperature",
+        "custom/separator",
 //        "custom/keyboard-layout",
         "network",
+        "custom/separator",
         "pulseaudio",
+        "custom/separator",
         "battery",
-        "clock#date"
-        //"clock#time"
+        "custom/separator",
+        "clock#date",
+        //"clock#time",
+        "tray"
     ],
 
 
@@ -50,9 +56,9 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}   {capacity}%", // Icon: bolt
+        "format": " {icon} {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon}   {capacity}%",
+        "format-discharging": "{icon} {capacity}%",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -71,13 +77,13 @@
 
     "clock#date": {
       "interval": 10,
-      "format": "   {:%e %b %Y   %H:%M}", // Icon: calendar-alt
+      "format": " {:%e %b %Y  %H:%M}", // Icon: calendar-alt
       "tooltip-format": "{:%e %B %Y}"
     },
 
     "cpu": {
         "interval": 5,
-        "format": "   {usage}%", // Icon: microchip
+        "format": " {usage}%", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -97,7 +103,7 @@
 
     "memory": {
         "interval": 5,
-        "format": "  {}%", // Icon: memory
+        "format": " {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -107,9 +113,9 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "   {essid} ({signalStrength}%)", // Icon: wifi
+        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
         "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠  Disconnected",
+        "format-disconnected": "⚠ Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}",
         "on-click": "alacritty -e nmtui",
     },
@@ -121,11 +127,11 @@
 
     "sway/window": {
         "format": "{title}",
-        "max-length": 50,
-        //"rewrite": {
-        //    "(.*) - Mozilla Firefox": "🌎 $1",
-		//    "(.*) - zsh": "> [$1]"
-	    //}
+        "max-length": 120,
+        "rewrite": {
+            "(.*) Mozilla Firefox": "🌎 $1",
+		    "Terminal - (.*)": "> [$1]"
+	    }
     },
 
     "sway/workspaces": {
@@ -138,16 +144,16 @@
             "3:editor": "", // Icon: code
             "4:terminals": "", // Icon: terminal
             "5:portal": "", // Icon: terminal
-            "urgent": "  ",
-            "focused": "  ",
-            "default": "  "
+            "urgent": "",
+            "focused": "",
+            "default": ""
         }
     },
 
     "pulseaudio": {
     //    //"scroll-step": 1,
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
@@ -164,7 +170,7 @@
     "temperature": {
       "critical-threshold": 80,
       "interval": 5,
-      "format": "{icon}  {temperatureC}°C",
+      "format": "{icon} {temperatureC}°C",
       "format-icons": [
           "", // Icon: temperature-empty
           "", // Icon: temperature-quarter
@@ -177,7 +183,13 @@
 
     "tray": {
         "icon-size": 21,
-        "spacing": 10
-    }
+        "spacing": 10,
+        "show-passive-items": true
+    },
 
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    }
 }

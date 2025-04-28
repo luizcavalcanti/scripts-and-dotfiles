@@ -48,10 +48,10 @@
 
 /* The whole bar */
 #waybar {
-    background: #323232;
-    color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
-    font-size: 13px;
+    background-color: #353444;
+    color: #dddddd;
+    font-family: Monaco, monospace;
+    font-size: 14px;
 }
 
 /* Each module */
@@ -65,8 +65,12 @@
 #pulseaudio,
 #temperature,
 #tray {
-    padding-left: 10px;
-    padding-right: 10px;
+    /* padding-left: 5px; */
+    /* padding-right: 5px; */
+}
+
+#custom-separator {
+    margin: 0px 7px;
 }
 
 
@@ -167,26 +171,27 @@
 
 #tray {
     /* No styles */
+    color: white;
 }
 
 #window {
     font-size: 14px;
-    font-weight: bold;
 }
 
 #workspaces button {
     border-top: 2px solid transparent;
     /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888888;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 7px;
+    color: #dddddd;
 }
 
 #workspaces button.focused {
     border-color: #4c7899;
     color: white;
-    background-color: #285577;
+    /* background-color: #285577; */
+    background-color: #555464;
 }
 
 #workspaces button.urgent {
