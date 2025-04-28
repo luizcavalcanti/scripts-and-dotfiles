@@ -1,0 +1,19 @@
+max-history=2
+# default-timeout=3000
+
+sort=-time
+layer=overlay
+background-color=#353444
+width=300
+height=110
+border-size=2
+border-color=#555464
+border-radius=5
+# icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+font=Monaco 10
+
+[mode=do-not-disturb]
+invisible=1
