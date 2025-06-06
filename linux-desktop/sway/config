@@ -15,6 +15,7 @@
 # swaylock (lock screen)
 # swayidle (idle time counter)
 # pavucontrol (volume control)
+# brightnessctl or light (brightness ctrl)
 #####################################
 
 
