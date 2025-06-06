@@ -267,15 +267,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-
-#
-# Multimedia
-#
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
-bindsym XF86AudioMute exec amixer sset Master toggle
-
-
 #
 # Status Bar:
 #
@@ -292,20 +283,22 @@ font pango:Cantarell 14px
 
 # Title bar
 default_border none
+# default_border pixel 1
 focus_follows_mouse yes
-gaps inner 5px
+gaps inner 5
 #for_windows [title="^.*"] title_format ""
 
 # Avizo (volume/brightness)
-# exec "avizo-service"
-# bindsym XF86AudioRaiseVolume exec volumectl -u up
-# bindsym XF86AudioLowerVolume exec volumectl -u down
-# bindsym XF86AudioMute exec volumectl toggle-mute
-# bindsym XF86AudioMicMute exec volumectl -m toggle-mute
-# bindsym XF86MonBrightnessUp exec lightctl up
-# bindsym XF86MonBrightnessDown exec lightctl down
-
-for_window [title="Volume Control"] floating enable resize set 800 600
+exec "avizo-service"
+bindsym XF86AudioRaiseVolume exec volumectl -u up
+bindsym XF86AudioLowerVolume exec volumectl -u down
+bindsym XF86AudioMute exec volumectl toggle-mute
+bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+bindsym XF86MonBrightnessUp exec lightctl up
+bindsym XF86MonBrightnessDown exec lightctl down
+#bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+#bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+#bindsym XF86AudioMute exec amixer sset Master toggle
 
 include @sysconfdir@/sway/config.d/*
 
