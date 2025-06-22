@@ -15,7 +15,6 @@
 # swaylock (lock screen)
 # swayidle (idle time counter)
 # pavucontrol (volume control)
-# brightnessctl or light (brightness ctrl)
 #####################################
 
 
@@ -77,6 +76,15 @@ output DP-1 {
     mode 2560x1440@59.951Hz
     scale 1
 }
+
+#
+# Clamshell Mode
+#
+# https://github.com/swaywm/sway/wiki#clamshell-mode
+set $laptop_display eDP-1
+bindswitch --reload --locked lid:on output $laptop_display disable
+bindswitch --reload --locked lid:off output $laptop_display enable
+exec_always ~/.config/sway/clamshell.sh
 
 
 ### Idle configuration
