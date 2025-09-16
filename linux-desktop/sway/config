@@ -226,9 +226,10 @@ bindsym XF86AudioMute exec volumectl toggle-mute
 bindsym XF86AudioMicMute exec volumectl -m toggle-mute
 bindsym XF86MonBrightnessUp exec lightctl up
 bindsym XF86MonBrightnessDown exec lightctl down
-#bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
-#bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
-#bindsym XF86AudioMute exec amixer sset Master toggle
+# alsa mixer
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+bindsym XF86AudioMute exec amixer sset Master toggle
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -236,5 +237,13 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TY
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY MOZ_ENABLE_WAYLAND=1
 exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr
 exec_always nm-applet --indicator
+
+
+###############
+# Screenshots #
+###############
+bindsym $mod+p exec --no-startup-id flameshot full -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+bindsym Shift+$mod+p exec --no-startup-id flameshot gui -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+
 
 include @sysconfdir@/sway/config.d/*
