@@ -25,7 +25,8 @@ set $browser firefox
 set $term xfce4-terminal
 set $menu tofi-run | xargs swaymsg exec --
 # Other settings
-set $wallpaper ~/.config/wallpapers/piano_01.jpg
+set $wallpaper ~/.config/wallpapers/fox_01.jpg
+set $lock_command swaylock -f
 
 #################
 # Notifications #
@@ -63,9 +64,9 @@ exec_always ~/.config/sway/clamshell.sh
 # Idle #
 ########
 exec swayidle -w \
-     timeout 600 'swaylock -f -c 000000' \
+     timeout 600 $lock_command #'swaylock -f' \
      timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-     before-sleep 'swaylock -f -c 000000'
+     before-sleep $lock_command #'swaylock -f'
 
 #########
 # Input #
@@ -77,11 +78,11 @@ input "type:keyboard" {
 
 input "type:touchpad" {
     tap enabled
-    natural_scroll enabled      
+    natural_scroll enabled
 }
 
 input "type:mouse" {
-    natural_scroll enabled      
+    natural_scroll enabled
 }
 
 ################
@@ -95,6 +96,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 # File manager
 bindsym $mod+m exec $file_manager
+# Lock screen
+bindsym $mod+l exec $lock_command
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -109,7 +112,7 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Quer mesmo sair do sway?' -s 'Não' -B 'Sim, quero sair' 'swaymsg exit'
 # Shutdown computer
- bindsym $mod+Shift+backspace exec swaynag -t error -m 'Quer mesmo desligar o computador?' -s 'Não' -B 'Sim, desligue esta porra' 'shutdown -h now'
+bindsym $mod+Shift+backspace exec swaynag -t error -m 'Quer mesmo desligar o computador?' -s 'Não' -B 'Sim, desligue esta porra' 'shutdown -h now'
 
 # Move your focus around
 bindsym $mod+Left focus left
@@ -220,9 +223,9 @@ gaps inner 5
 
 # Avizo (volume/brightness)
 exec "avizo-service"
-bindsym XF86AudioRaiseVolume exec volumectl -u up
-bindsym XF86AudioLowerVolume exec volumectl -u down
-bindsym XF86AudioMute exec volumectl toggle-mute
+#bindsym XF86AudioRaiseVolume exec volumectl -u up
+#bindsym XF86AudioLowerVolume exec volumectl -u down
+#bindsym XF86AudioMute exec volumectl toggle-mute
 bindsym XF86AudioMicMute exec volumectl -m toggle-mute
 bindsym XF86MonBrightnessUp exec lightctl up
 bindsym XF86MonBrightnessDown exec lightctl down
@@ -236,14 +239,17 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE=wayland
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY MOZ_ENABLE_WAYLAND=1
 exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr
-exec_always nm-applet --indicator
-
+#exec_always nm-applet --indicator
+exec_always /opt/netskope/stagent/stAgentUI &
 
 ###############
 # Screenshots #
 ###############
-bindsym $mod+p exec --no-startup-id flameshot full -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
-bindsym Shift+$mod+p exec --no-startup-id flameshot gui -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+bindsym $mod+p exec --no-startup-id flameshot full -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+bindsym Shift+$mod+p exec --no-startup-id flameshot gui -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+## Clipboard Screenshots
+bindsym Ctrl+$mod+p exec --no-startup-id flameshot full
+bindsym Ctrl+Shift+$mod+p exec --no-startup-id flameshot gui
 
 
 include @sysconfdir@/sway/config.d/*

@@ -16,7 +16,7 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    // "height": 30,
 
     "modules-left": [
         "sway/workspaces",
@@ -26,22 +26,23 @@
         "sway/window"
     ],
     "modules-right": [
-        "memory",
-        "custom/separator",
-        "cpu",
-        "custom/separator",
-        "temperature",
+        "tray",
         "custom/separator",
 //        "custom/keyboard-layout",
         "network",
-        "custom/separator",
+        //"custom/separator",
         "pulseaudio",
+        //"custom/separator",
+        "bluetooth",
         "custom/separator",
+        "cpu",
+        "memory",
         "battery",
         "custom/separator",
-        "clock#date",
+        "temperature",
+        "clock#date"
         //"clock#time",
-        "tray"
+        //"custom/separator",
     ],
 
 
@@ -56,7 +57,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": " {icon} {capacity}%", // Icon: bolt
+        "format": " {icon}", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon} {capacity}%",
         "format-icons": [
@@ -67,6 +68,13 @@
             ""  // Icon: battery-empty
         ],
         "tooltip": true
+    },
+
+    "bluetooth": {
+      "format": "  ",
+      "tooltip": true,
+      "tooltip-format": "Bluetooth Settings",
+      "on-click": "blueman-manager",
     },
 
     "clock#time": {
@@ -103,7 +111,7 @@
 
     "memory": {
         "interval": 5,
-        "format": " {}%", // Icon: memory
+        "format": " {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -113,11 +121,11 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+        "format-wifi": "  ({signalStrength}%) ", // Icon: wifi
         "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠ Disconnected",
+        "format-disconnected": "⚠",
         "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "alacritty -e nmtui",
+        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center wi-fi",
     },
 
     "sway/mode": {
@@ -130,8 +138,8 @@
         "max-length": 120,
         "rewrite": {
             "(.*) Mozilla Firefox": "🌎 $1",
-		    "Terminal - (.*)": "> [$1]"
-	    }
+            "Terminal - (.*)": "> [$1]"
+        }
     },
 
     "sway/workspaces": {
@@ -152,19 +160,20 @@
 
     "pulseaudio": {
     //    //"scroll-step": 1,
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
+        "format": "{icon} ({volume}%)",
+        "format-bluetooth": "{icon} ({volume}%)",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
-            "handsfree": "",
-            "headset": "",
+            "handsfree": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound"
+
     },
 
     "temperature": {
@@ -182,7 +191,7 @@
     },
 
     "tray": {
-        "icon-size": 21,
+        "icon-size": 24,
         "spacing": 10,
         "show-passive-items": true
     },
