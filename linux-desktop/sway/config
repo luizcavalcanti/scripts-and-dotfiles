@@ -3,7 +3,7 @@
 
 #####################################
 # Current dependencies:
-# tofi (launcher)
+# rofi (launcher)
 # nautilus (file manager)
 # waybar (sway bar)
 # xfce4-terminal (terminal emulator)
@@ -23,7 +23,7 @@ set $mod Mod4
 set $file_manager nautilus
 set $browser firefox
 set $term xfce4-terminal
-set $menu tofi-run | xargs swaymsg exec --
+set $menu "rofi -combi-modi drun -show combi -show-icons"
 # Other settings
 set $wallpaper ~/.config/wallpapers/fox_01.jpg
 set $lock_command swaylock -f
