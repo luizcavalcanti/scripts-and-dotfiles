@@ -7,198 +7,179 @@
 // =============================================================================
 
 {
-    // -------------------------------------------------------------------------
-    // Global configuration
-    // -------------------------------------------------------------------------
+  "layer": "top",
+  "position": "top",
+  // "height": 50, auto-calculate
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "tray",
+    "custom/separator",
+    "network",
+    "pulseaudio",
+    "bluetooth",
+    "custom/separator",
+    "cpu",
+    "temperature",
+    "memory",
+    "battery",
+    "custom/separator",
+    "clock",
+    "custom/power"
+  ],
 
-    "layer": "top",
-
-    "position": "top",
-
-    // If height property would be not present, it'd be calculated dynamically
-    // "height": 30,
-
-    "modules-left": [
-        "sway/workspaces",
-        "sway/mode"
-    ],
-    "modules-center": [
-        "sway/window"
-    ],
-    "modules-right": [
-        "tray",
-        "custom/separator",
-//        "custom/keyboard-layout",
-        "network",
-        //"custom/separator",
-        "pulseaudio",
-        //"custom/separator",
-        "bluetooth",
-        "custom/separator",
-        "cpu",
-        "memory",
-        "battery",
-        "custom/separator",
-        "temperature",
-        "clock#date"
-        //"clock#time",
-        //"custom/separator",
-    ],
-
-
-    // -------------------------------------------------------------------------
-    // Modules
-    // -------------------------------------------------------------------------
-
-    "battery": {
-        "interval": 10,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        // Connected to AC
-        "format": " {icon}", // Icon: bolt
-        // Not connected to AC
-        "format-discharging": "{icon} {capacity}%",
-        "format-icons": [
-            "", // Icon: battery-full
-            "", // Icon: battery-three-quarters
-            "", // Icon: battery-half
-            "", // Icon: battery-quarter
-            ""  // Icon: battery-empty
-        ],
-        "tooltip": true
-    },
-
-    "bluetooth": {
-      "format": "  ",
-      "tooltip": true,
-      "tooltip-format": "Bluetooth Settings",
-      "on-click": "blueman-manager",
-    },
-
-    "clock#time": {
-        "interval": 1,
-        "format": "{:%H:%M:%S}",
-        "tooltip": false
-    },
-
-    "clock#date": {
-      "interval": 10,
-      "format": " {:%e %b %Y  %H:%M}", // Icon: calendar-alt
-      "tooltip-format": "{:%e %B %Y}"
-    },
-
-    "cpu": {
-        "interval": 5,
-        "format": " {usage}%", // Icon: microchip
-        "states": {
-          "warning": 70,
-          "critical": 90
-        },
-        "on-click": "missioncenter"
-    },
-
-    "custom/keyboard-layout": {
-      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-      // Interval set only as a fallback, as the value is updated by signal
-      "interval": 30,
-      "format": "  {}", // Icon: keyboard
-      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-      "signal": 1, // SIGHUP
-      "tooltip": false
-    },
-
-    "memory": {
-        "interval": 5,
-        "format": " {}%", // Icon: memory
-        "states": {
-            "warning": 70,
-            "critical": 90
-        },
-        "on-click": "alacritty -e bashtop",
-    },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": "  ({signalStrength}%) ", // Icon: wifi
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center wi-fi",
-    },
-
-    "sway/mode": {
-        "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
-        "tooltip": false
-    },
-
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 120,
-        "rewrite": {
-            "(.*) Mozilla Firefox": "🌎 $1",
-            "Terminal - (.*)": "> [$1]"
-        }
-    },
-
-    "sway/workspaces": {
-        "all-outputs": false,
-        "disable-scroll": true,
-        "format": "{icon} {name}",
-        "format-icons": {
-            "1:www": "龜", // Icon: firefox-browser
-            "2:mail": "", // Icon: mail
-            "3:editor": "", // Icon: code
-            "4:terminals": "", // Icon: terminal
-            "5:portal": "", // Icon: terminal
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-
-    "pulseaudio": {
-    //    //"scroll-step": 1,
-        "format": "{icon} ({volume}%)",
-        "format-bluetooth": "{icon} ({volume}%)",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound"
-
-    },
-
-    "temperature": {
-      "critical-threshold": 80,
-      "interval": 5,
-      "format": "{icon} {temperatureC}°C",
-      "format-icons": [
-          "", // Icon: temperature-empty
-          "", // Icon: temperature-quarter
-          "", // Icon: temperature-half
-          "", // Icon: temperature-three-quarters
-          ""  // Icon: temperature-full
-      ],
-      "tooltip": true
-    },
-
-    "tray": {
-        "icon-size": 24,
-        "spacing": 10,
-        "show-passive-items": true
-    },
-
-    "custom/separator": {
-        "format": "|",
-        "interval": "once",
-        "tooltip": false
+  "sway/workspaces": {
+    "all-outputs": false,
+    "disable-scroll": true,
+    "format": "{icon} {name}",
+    "format-icons": {
+      "urgent": "",
+      "focused": "",
+      "default": ""
     }
+  },
+
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "tooltip": false
+  },
+
+  "sway/window": {
+    "format": "({app_id}) {title}",
+    "max-length": 120,
+  },
+
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    // Connected to AC
+    "format": " {icon}",
+    "format-charging": " {icon} {capacity}%",
+    // Not connected to AC
+    "format-discharging": "{icon} {capacity}%",
+    "format-icons": [
+      "", // Icon: battery-full
+      "", // Icon: battery-three-quarters
+      "", // Icon: battery-half
+      "", // Icon: battery-quarter
+      ""  // Icon: battery-empty
+    ],
+    "tooltip": true
+  },
+
+  "bluetooth": {
+    "format": " {num_connections}",
+    "tooltip": true,
+    "tooltip-format-enumerate-connected": "{device_alias}\t({device_battery_percentage}%)",
+    "tooltip-format": "{device_enumerate}",
+    "on-click": "blueman-manager",
+  },
+
+  "clock": {
+    "interval": 10,
+    "format": "{:%e %b %Y  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      },
+    },
+  },
+
+  "custom/power": {
+    "format" : "⏻ ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+    },
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": " {icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "states": {
+      "warning": 60,
+      "critical": 80
+    },
+    "on-click": "xfce4-terminal -e btop"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": " {percentage}% {swapPercentage}%", // Icon: memory
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "xfce4-terminal -e btop",
+    "max-length": 10,
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": " {signalStrength}% ", // Icon: wifi
+    "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+    "format-disconnected": "⚠",
+    "tooltip-format": "{ifname}: {ipaddr}",
+    "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center wi-fi",
+  },
+
+  "pulseaudio": {
+    //    //"scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": " (mute)",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound"
+
+  },
+
+  "temperature": {
+    "thermal-zone": 2,
+    "critical-threshold": 80,
+    "interval": 5,
+    "format": "{temperatureC}°C",
+    "format-icons": [
+      "", // Icon: temperature-empty
+      "", // Icon: temperature-quarter
+      "", // Icon: temperature-half
+      "", // Icon: temperature-three-quarters
+      ""  // Icon: temperature-full
+    ],
+    "tooltip": true
+  },
+
+  "tray": {
+    "icon-size": 24,
+    "spacing": 10,
+    "show-passive-items": true,
+    "icons": {
+      "blueman": "bluetooth",
+    }
+  },
+
+  "custom/separator": {
+    "format": "|",
+    "interval": "once",
+    "tooltip": false
+  }
 }

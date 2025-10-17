@@ -39,19 +39,20 @@
 
 /* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
+    /* border: none; */
+    /* border-radius: 0; */
+    /* min-height: 0; */
+    /* margin: 0; */
+    padding: 0 3;
+    font-family: "Cantarell";
 }
 
 /* The whole bar */
 #waybar {
     background-color: #353444;
     color: #dddddd;
-    font-family: Monaco, monospace;
-    font-size: 14px;
+    font-family: "Cantarell";
+    font-size: 18px;
 }
 
 /* Each module */
@@ -175,7 +176,7 @@
 }
 
 #window {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #workspaces button {
