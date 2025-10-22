@@ -1,16 +1,10 @@
 /* =============================================================================
- *
  * Waybar configuration
- *
  * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
  * =========================================================================== */
 
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
+ /* Keyframes */
+ @keyframes blink-warning {
     70% {
         color: white;
     }
@@ -23,7 +17,7 @@
 
 @keyframes blink-critical {
     70% {
-      color: white;
+        color: white;
     }
 
     to {
@@ -32,28 +26,39 @@
     }
 }
 
+/* Colors */
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
 
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
+@define-color background-alpha rgba(0, 0, 0, 0);
+@define-color background #398c4b;
+@define-color foreground #f8f8f2;
+@define-color selection #44aa5a;
+@define-color comment #6272a4;
 
 /* Reset all styles */
 * {
-    /* border: none; */
-    /* border-radius: 0; */
-    /* min-height: 0; */
-    /* margin: 0; */
-    padding: 0 3;
     font-family: "Cantarell";
+    border-radius: 7px;
+    padding: 0 7px;
 }
 
 /* The whole bar */
 #waybar {
-    background-color: #353444;
-    color: #dddddd;
+    background-color: @background-alpha;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
     font-family: "Cantarell";
     font-size: 18px;
+    font-weight: bold;
 }
+
 
 /* Each module */
 #battery,
@@ -65,21 +70,17 @@
 #network,
 #pulseaudio,
 #temperature,
-#tray {
-    /* padding-left: 5px; */
-    /* padding-right: 5px; */
-}
+#tray
 
+
+/* Module styles */
 #custom-separator {
-    margin: 0px 7px;
 }
-
-
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
 
 #battery {
+    background-color: @background;
+    margin-top: 5px;
+    margin-right: 3px;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -104,11 +105,14 @@
 }
 
 #clock {
-    font-weight: bold;
+    background-color: @background;
+    margin-top: 5px;
 }
 
 #cpu {
-  /* No styles */
+    background-color: @background;
+    margin-top: 5px;
+    margin-right: 3px;
 }
 
 #cpu.warning {
@@ -120,6 +124,9 @@
 }
 
 #memory {
+    background-color: @background;
+    margin-top: 5px;
+    margin-right: 3px;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -136,14 +143,14 @@
 }
 
 #mode {
-    background: #64727D;
-    border-top: 2px solid white;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
+    background: @pink;
+    margin-top: 5px;
 }
 
 #network {
-    /* No styles */
+    background-color: @background;
+    margin-top: 5px;
+    margin-right: 3px;
 }
 
 #network.disconnected {
@@ -151,19 +158,23 @@
 }
 
 #pulseaudio {
-    /* No styles */
+    background-color: @background;
+    margin-top: 5px;
+    margin-right: 3px;
 }
 
 #pulseaudio.muted {
     /* No styles */
 }
 
-#custom-spotify {
-    color: rgb(102, 220, 105);
+#bluetooth {
+    background-color: @background;
+    margin-top: 5px;
 }
 
 #temperature {
-    /* No styles */
+    background-color: @background;
+    margin-top: 5px;
 }
 
 #temperature.critical {
@@ -171,31 +182,27 @@
 }
 
 #tray {
-    /* No styles */
-    color: white;
+    background-color: @background;
+    margin-top: 5px;
 }
 
 #window {
+    background-color: @background;
+    margin-top: 5px;
     font-size: 18px;
 }
 
-#workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 1px;
-    padding-left: 5px;
-    padding-right: 7px;
-    color: #dddddd;
+button {
+    margin-top: 5px;
+    color: @foreground;
 }
-
-#workspaces button.focused {
-    border-color: #4c7899;
-    color: white;
-    /* background-color: #285577; */
-    background-color: #555464;
+button:hover {
+    background: @selection;
+    color: @foreground;
 }
-
-#workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+button.focused {
+    background-color: @background;
+}
+button.urgent {
+    background-color: @red;
 }

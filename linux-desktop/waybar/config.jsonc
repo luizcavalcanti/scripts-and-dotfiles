@@ -1,9 +1,6 @@
 // =============================================================================
-//
 // Waybar configuration
-//
 // Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
 // =============================================================================
 
 {
@@ -19,10 +16,10 @@
     "pulseaudio",
     "bluetooth",
     "custom/separator",
+    "battery",
+    "memory",
     "cpu",
     "temperature",
-    "memory",
-    "battery",
     "custom/separator",
     "clock",
     "custom/power"
@@ -31,21 +28,16 @@
   "sway/workspaces": {
     "all-outputs": false,
     "disable-scroll": true,
-    "format": "{icon} {name}",
-    "format-icons": {
-      "urgent": "",
-      "focused": "",
-      "default": ""
-    }
+    "format": "{name}",
   },
 
   "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>",
+    "format": "{}",
     "tooltip": false
   },
 
   "sway/window": {
-    "format": "({app_id}) {title}",
+    "format": "{title}",
     "max-length": 120,
   },
 
@@ -107,7 +99,7 @@
   "cpu": {
     "interval": 1,
     "format": " {icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7}",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "states": {
       "warning": 60,
       "critical": 80
@@ -178,7 +170,7 @@
   },
 
   "custom/separator": {
-    "format": "|",
+    "format": " ",
     "interval": "once",
     "tooltip": false
   }
