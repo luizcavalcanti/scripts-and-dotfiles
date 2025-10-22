@@ -12,6 +12,7 @@
 # swaylock (lock screen)
 # swayidle (idle time counter)
 # pavucontrol (volume control)
+# clipman (clipboard manager)
 #####################################
 
 #############
@@ -25,7 +26,7 @@ set $browser firefox
 set $term xfce4-terminal
 set $menu "rofi -combi-modi drun -show combi -show-icons"
 # Other settings
-set $wallpaper ~/.config/wallpapers/fox_01.jpg
+set $wallpaper ~/.config/wallpapers/fox_02.jpg
 set $lock_command swaylock -f
 
 #################
@@ -64,9 +65,10 @@ exec_always ~/.config/sway/clamshell.sh
 # Idle #
 ########
 exec swayidle -w \
-     timeout 600 $lock_command #'swaylock -f' \
-     timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-     before-sleep $lock_command #'swaylock -f'
+     timeout 300 $lock_command
+     timeout 360 'swaymsg "output * power off"' \
+     resume 'swaymsg "output * power on"' \
+     before-sleep $lock_command
 
 #########
 # Input #
@@ -84,6 +86,11 @@ input "type:touchpad" {
 input "type:mouse" {
     natural_scroll enabled
 }
+
+#############
+# Clipboard #
+#############
+exec wl-paste -t text --watch clipman store --no-persist
 
 ################
 # Key bindings #
