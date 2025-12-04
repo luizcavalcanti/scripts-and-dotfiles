@@ -3,29 +3,6 @@
  * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
  * =========================================================================== */
 
- /* Keyframes */
- @keyframes blink-warning {
-    70% {
-        color: white;
-    }
-
-    to {
-        color: white;
-        background-color: orange;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-        color: white;
-    }
-
-    to {
-        color: white;
-        background-color: red;
-    }
-}
-
 /* Colors */
 @define-color cyan #8be9fd;
 @define-color green #50fa7b;
@@ -41,11 +18,34 @@
 @define-color selection #44aa5a;
 @define-color comment #6272a4;
 
+/* Keyframes */
+@keyframes blink-warning {
+    70% {
+        color: @foreground;
+    }
+
+    to {
+        color: @foreground;
+        background-color: @orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+        color: @foreground;
+    }
+
+    to {
+        color: @foreground;
+        background-color: @red;
+    }
+}
+
 /* Reset all styles */
 * {
     font-family: "Cantarell";
     border-radius: 7px;
-    padding: 0 7px;
+    padding: 1px 7px 1px 7px;
 }
 
 /* The whole bar */
@@ -55,8 +55,7 @@
     transition-property: background-color;
     transition-duration: .5s;
     font-family: "Cantarell";
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1.2em;
 }
 
 
@@ -77,6 +76,11 @@
 #custom-separator {
 }
 
+#custom-power {
+    background-color: @background;
+    margin-top: 5px;
+}
+
 #battery {
     background-color: @background;
     margin-top: 5px;
@@ -87,11 +91,11 @@
 }
 
 #battery.warning {
-    color: orange;
+    color: @orange;
 }
 
 #battery.critical {
-    color: red;
+    color: @red;
 }
 
 #battery.warning.discharging {
@@ -107,20 +111,22 @@
 #clock {
     background-color: @background;
     margin-top: 5px;
+    margin-right: 3px;
 }
 
 #cpu {
     background-color: @background;
     margin-top: 5px;
     margin-right: 3px;
+    font-weight: bold;
 }
 
 #cpu.warning {
-    color: orange;
+    color: @orange;
 }
 
 #cpu.critical {
-    color: red;
+    color: @red;
 }
 
 #memory {
@@ -133,11 +139,11 @@
 }
 
 #memory.warning {
-    color: orange;
+    color: @orange;
 }
 
 #memory.critical {
-    color: red;
+    color: @red;
     animation-name: blink-critical;
     animation-duration: 2s;
 }
@@ -154,7 +160,7 @@
 }
 
 #network.disconnected {
-    color: orange;
+    color: @orange;
 }
 
 #pulseaudio {
@@ -178,18 +184,17 @@
 }
 
 #temperature.critical {
-    color: red;
+    color: @red;
 }
 
 #tray {
-    background-color: @background;
     margin-top: 5px;
 }
 
 #window {
     background-color: @background;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 1.2em;
 }
 
 button {

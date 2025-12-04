@@ -21,8 +21,7 @@
     "cpu",
     "temperature",
     "custom/separator",
-    "clock",
-    "custom/power"
+    "clock"
   ],
 
   "sway/workspaces": {
@@ -48,16 +47,19 @@
       "critical": 15
     },
     // Connected to AC
-    "format": " {icon}",
+    "format": "{icon} {capacity}%",
     "format-charging": " {icon} {capacity}%",
     // Not connected to AC
     "format-discharging": "{icon} {capacity}%",
     "format-icons": [
-      "", // Icon: battery-full
-      "", // Icon: battery-three-quarters
-      "", // Icon: battery-half
-      "", // Icon: battery-quarter
-      ""  // Icon: battery-empty
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
     ],
     "tooltip": true
   },
@@ -83,23 +85,10 @@
     },
   },
 
-  "custom/power": {
-    "format" : "⏻ ",
-    "tooltip": false,
-    "menu": "on-click",
-    "menu-file": "~/.config/waybar/power_menu.xml",
-    "menu-actions": {
-      "shutdown": "shutdown",
-      "reboot": "reboot",
-      "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
-    },
-  },
-
   "cpu": {
     "interval": 1,
-    "format": " {icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7}",
-    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7}",
+    "format-icons": ["⡀", "⣀", "⣄", "⣤", "⣦", "⣶", "⣷", "⣿", "☭"],
     "states": {
       "warning": 60,
       "critical": 80
