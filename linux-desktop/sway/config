@@ -27,7 +27,7 @@ set $term xfce4-terminal
 set $menu "rofi -combi-modi drun -show combi -show-icons"
 # Other settings
 set $wallpaper ~/.config/wallpapers/fox_02.jpg
-set $lock_command swaylock -f
+set $lock_command "swaylock -f"
 
 #################
 # Notifications #
@@ -65,8 +65,8 @@ exec_always ~/.config/sway/clamshell.sh
 # Idle #
 ########
 exec swayidle -w \
-     timeout 300 $lock_command
-     timeout 360 'swaymsg "output * power off"' \
+     timeout 120 $lock_command \
+     timeout 300 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
      resume 'swaymsg "output * power on"' \
      before-sleep $lock_command
 
@@ -119,7 +119,7 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Quer mesmo sair do sway?' -s 'Não' -B 'Sim, quero sair' 'swaymsg exit'
 # Shutdown computer
-bindsym $mod+Shift+backspace exec swaynag -t error -m 'Quer mesmo desligar o computador?' -s 'Não' -B 'Sim, desligue esta porra' 'shutdown -h now'
+bindsym $mod+Shift+backspace exec swaynag -t error -m 'Quer mesmo desligar o computador?' -s 'Não' -B 'Sim, quero desligar' 'shutdown -h now'
 
 # Move your focus around
 bindsym $mod+Left focus left
