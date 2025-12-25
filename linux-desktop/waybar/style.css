@@ -43,7 +43,7 @@
 
 /* Reset all styles */
 * {
-    font-family: "Cantarell";
+    font-family: "JetBrainsMono NFP";
     border-radius: 7px;
     padding: 1px 7px 1px 7px;
 }
@@ -54,7 +54,6 @@
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
-    font-family: "Cantarell";
     font-size: 1.2em;
 }
 
@@ -194,7 +193,11 @@
 #window {
     background-color: @background;
     margin-top: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
 }
 
 button {
