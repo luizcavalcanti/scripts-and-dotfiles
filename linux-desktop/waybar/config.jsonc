@@ -109,8 +109,8 @@
 
   "network": {
     "interval": 5,
-    "format-wifi": " {signalStrength}% ", // Icon: wifi
-    "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+    "format-wifi": " {signalStrength}%", // Icon: wifi
+    "format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
     "format-disconnected": "⚠",
     "tooltip-format": "{ifname}: {ipaddr}",
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center wi-fi",

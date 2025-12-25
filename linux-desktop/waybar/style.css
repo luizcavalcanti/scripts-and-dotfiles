@@ -45,7 +45,8 @@
 * {
     font-family: "JetBrainsMono NFP";
     border-radius: 7px;
-    padding: 1px 7px 1px 7px;
+    padding: 0rem 0.4rem;
+    font-weight: bold;
 }
 
 /* The whole bar */
