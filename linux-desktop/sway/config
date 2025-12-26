@@ -56,9 +56,9 @@ output * bg $wallpaper fill
 # Clamshell Mode #
 ##################
 # https://github.com/swaywm/sway/wiki#clamshell-mode
-bindswitch --reload --locked lid:on output $laptop_display disable
-bindswitch --reload --locked lid:off output $laptop_display enable
-exec_always ~/.config/sway/clamshell.sh
+# bindswitch --reload --locked lid:on output $laptop_display disable
+# bindswitch --reload --locked lid:off output $laptop_display enable
+# exec_always ~/.config/sway/clamshell.sh
 
 
 ########
@@ -225,7 +225,7 @@ font pango:Cantarell 14px
 #############
 # Title bar #
 #############
-default_border none
+default_border pixel 2
 # default_border pixel 1
 focus_follows_mouse yes
 gaps inner 5
@@ -255,11 +255,13 @@ exec_always /opt/netskope/stagent/stAgentUI &
 ###############
 # Screenshots #
 ###############
-bindsym $mod+p exec --no-startup-id flameshot full -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
-bindsym Shift+$mod+p exec --no-startup-id flameshot gui -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+# bindsym $mod+p exec --no-startup-id flameshot full -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+# bindsym Shift+$mod+p exec --no-startup-id flameshot gui -c -p "/home/$USER/Pictures/Screenshots/$(date -u +%Y-%m-%dT%H:%M:%S)"
+bindsym Shift+$mod+p exec grim - | swappy -f -
 ## Clipboard Screenshots
-bindsym Ctrl+$mod+p exec --no-startup-id flameshot full
-bindsym Ctrl+Shift+$mod+p exec --no-startup-id flameshot gui
-
+# bindsym Ctrl+$mod+p exec --no-startup-id flameshot full
+# bindsym Ctrl+Shift+$mod+p exec --no-startup-id flameshot gui
+# bindsym Ctrl+$mod+p exec grim -g "$(slurp)" -
+bindsym Ctrl+Shift+$mod+p exec grim -g "$(slurp)" - | swappy -f -
 
 include @sysconfdir@/sway/config.d/*
