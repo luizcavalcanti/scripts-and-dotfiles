@@ -65,8 +65,8 @@ output * bg $wallpaper fill
 # Idle #
 ########
 exec swayidle -w \
-     timeout 120 $lock_command \
-     timeout 300 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
+     timeout 300 $lock_command \
+     timeout 360 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
      resume 'swaymsg "output * power on"' \
      before-sleep $lock_command
 
