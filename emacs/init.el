@@ -72,8 +72,10 @@
 (straight-use-package 'go-mode)
 (straight-use-package 'glsl-mode)
 (straight-use-package 'terraform-mode)
+(straight-use-package 'typescript-mode)
 (straight-use-package 'sideline-flymake)
 (straight-use-package 'eldoc-box)
+(straight-use-package 'zenburn-theme)
 
 
 
@@ -199,7 +201,10 @@
 (add-hook 'flymake-mode-hook 'sideline-mode)
 
 ;; Python config
-(setq ruff-format-command (concat (getenv "HOME") "/.local/bin/ruff"))
+(setq ruff-format-command "/snap/bin/ruff")
+
+;; Javascript config
+(setq js-indent-level 2)
 
 ;; c/c++ config
 (setq c-basic-offset 4)
@@ -224,7 +229,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set color theme
 ;; (load-theme 'solarized-light t)
-(load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
+(load-theme 'zenburn t)
 
 ;; Cursor settings
 (set-cursor-color "#FF6666")
